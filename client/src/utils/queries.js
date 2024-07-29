@@ -29,17 +29,3 @@ export const QUERY_ME = gql`
     }
   }
 `;
-
-export const QUERY_CONVERSATIONS = gql`
-  query getConversations($senderId: ID!) {
-    getConversations(senderId: $senderId) {
-      _id
-      sender {
-        _id
-        username
-      }
-      message
-      timestamp
-    }
-  }
-`;
