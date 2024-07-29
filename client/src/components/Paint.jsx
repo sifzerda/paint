@@ -7,7 +7,7 @@ const PaintApp = () => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [brushColor, setBrushColor] = useState('#000000');
   const [brushWidth, setBrushWidth] = useState(5);
-  const [brushType, setBrushType] = useState('pencil'); // Added state for brush type
+  const [brushType, setBrushType] = useState('pencil');
 
   useEffect(() => {
     fabricCanvas.current = new fabric.Canvas(canvasRef.current, {
@@ -15,13 +15,24 @@ const PaintApp = () => {
       height: window.innerHeight,
     });
 
-    // Set initial pencil options
     fabricCanvas.current.freeDrawingBrush.color = brushColor;
     fabricCanvas.current.freeDrawingBrush.width = brushWidth;
 
-    // Cleanup on unmount
+    const handleKeyDown = (event) => {
+      if (event.key === 'Delete' || event.key === 'Backspace') {
+        const activeObject = fabricCanvas.current.getActiveObject();
+        if (activeObject) {
+          fabricCanvas.current.remove(activeObject);
+          fabricCanvas.current.discardActiveObject().renderAll();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
       fabricCanvas.current.dispose();
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -30,7 +41,6 @@ const PaintApp = () => {
       fabricCanvas.current.freeDrawingBrush.color = brushColor;
       fabricCanvas.current.freeDrawingBrush.width = brushWidth;
 
-      // Update brush type
       switch (brushType) {
         case 'pencil':
           fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
@@ -75,7 +85,6 @@ const PaintApp = () => {
           circleBrush.width = brushWidth;
           fabricCanvas.current.freeDrawingBrush = circleBrush;
           break;
-        // Add other brush types similarly
         default:
           fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
       }
@@ -90,7 +99,7 @@ const PaintApp = () => {
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Initial size setup
+    handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -107,7 +116,6 @@ const PaintApp = () => {
     const canvas = fabricCanvas.current;
     if (canvas) {
       const dataURL = canvas.toDataURL('image/png');
-      // Trigger download
       const link = document.createElement('a');
       link.href = dataURL;
       link.download = 'drawing.png';
@@ -141,7 +149,6 @@ const PaintApp = () => {
             radius: 50,
           });
           break;
-        // Add other shapes similarly
         default:
           return;
       }
@@ -164,7 +171,7 @@ const PaintApp = () => {
       <button onClick={handleSave}>Save</button>
       <button onClick={() => drawShape('rectangle')}>Draw Rectangle</button>
       <button onClick={() => drawShape('circle')}>Draw Circle</button>
-      
+
       <input 
         type="color" 
         value={brushColor} 
