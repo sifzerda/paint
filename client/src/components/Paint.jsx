@@ -54,27 +54,6 @@ const PaintApp = () => {
             fabricCanvas.current.freeDrawingBrush = patternBrush;
           };
           break;
-        case 'marker':
-          fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
-          fabricCanvas.current.freeDrawingBrush.strokeLineCap = 'round';
-          fabricCanvas.current.freeDrawingBrush.strokeLineJoin = 'round';
-          break;
-        case 'crayon':
-          fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
-          fabricCanvas.current.freeDrawingBrush.strokeLineCap = 'round';
-          fabricCanvas.current.freeDrawingBrush.strokeLineJoin = 'round';
-          fabricCanvas.current.freeDrawingBrush.shadow = new fabric.Shadow({
-            color: brushColor,
-            blur: 10,
-            offsetX: 0,
-            offsetY: 0,
-          });
-          break;
-        case 'calligraphy':
-          fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
-          fabricCanvas.current.freeDrawingBrush.strokeLineCap = 'round';
-          fabricCanvas.current.freeDrawingBrush.strokeLineJoin = 'round';
-          break;
         case 'circle':
           const circleBrush = new fabric.CircleBrush(fabricCanvas.current);
           circleBrush.color = brushColor;
@@ -167,15 +146,12 @@ const PaintApp = () => {
       </button>
       <button onClick={() => setBrushType('pencil')}>Pencil</button>
       <button onClick={() => setBrushType('airbrush')}>Airbrush</button>
-      <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
-      <button onClick={() => setBrushType('marker')}>Marker</button>
-      <button onClick={() => setBrushType('crayon')}>Crayon</button>
-      <button onClick={() => setBrushType('calligraphy')}>Calligraphy Pen</button>
+      <button onClick={() => setBrushType('pattern')}>Pattern Brush</button> 
       <button onClick={() => setBrushType('circle')}>Circle Brush</button>
-      <button onClick={handleSave}>Save</button>
+      <button onClick={handleSave}>💾 SAVE</button>
       <button onClick={() => drawShape('rectangle')}>Draw Rectangle</button>
       <button onClick={() => drawShape('circle')}>Draw Circle</button>
-      <button onClick={deleteSelectedObject}>Delete</button>
+      <button onClick={deleteSelectedObject}>🗑️ DELETE </button>
 
       <input
         type="color"
