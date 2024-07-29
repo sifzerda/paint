@@ -7,7 +7,7 @@ const PaintApp = () => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [brushColor, setBrushColor] = useState('#000000');
   const [brushWidth, setBrushWidth] = useState(5);
-  const [brushType, setBrushType] = useState('pencil'); // Added state for brush type
+  const [fileFormat, setFileFormat] = useState('png');
 
   useEffect(() => {
     fabricCanvas.current = new fabric.Canvas(canvasRef.current, {
@@ -29,58 +29,8 @@ const PaintApp = () => {
     if (fabricCanvas.current) {
       fabricCanvas.current.freeDrawingBrush.color = brushColor;
       fabricCanvas.current.freeDrawingBrush.width = brushWidth;
-
-      // Update brush type
-      switch (brushType) {
-        case 'pencil':
-          fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
-          break;
-        case 'airbrush':
-          fabricCanvas.current.freeDrawingBrush = new fabric.SprayBrush(fabricCanvas.current);
-          fabricCanvas.current.freeDrawingBrush.decimate = 0.1;
-          break;
-        case 'pattern':
-          const img = new Image();
-          img.src = 'https://fabricjs.com/assets/honey_im_subtle.png';
-          img.onload = () => {
-            const patternBrush = new fabric.PatternBrush(fabricCanvas.current);
-            patternBrush.source = img;
-            fabricCanvas.current.freeDrawingBrush = patternBrush;
-          };
-          break;
-        case 'marker':
-          fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
-          fabricCanvas.current.freeDrawingBrush.strokeLineCap = 'round';
-          fabricCanvas.current.freeDrawingBrush.strokeLineJoin = 'round';
-          break;
-        case 'crayon':
-          fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
-          fabricCanvas.current.freeDrawingBrush.strokeLineCap = 'round';
-          fabricCanvas.current.freeDrawingBrush.strokeLineJoin = 'round';
-          fabricCanvas.current.freeDrawingBrush.shadow = new fabric.Shadow({
-            color: brushColor,
-            blur: 10,
-            offsetX: 0,
-            offsetY: 0,
-          });
-          break;
-        case 'calligraphy':
-          fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
-          fabricCanvas.current.freeDrawingBrush.strokeLineCap = 'round';
-          fabricCanvas.current.freeDrawingBrush.strokeLineJoin = 'round';
-          break;
-        case 'circle':
-          const circleBrush = new fabric.CircleBrush(fabricCanvas.current);
-          circleBrush.color = brushColor;
-          circleBrush.width = brushWidth;
-          fabricCanvas.current.freeDrawingBrush = circleBrush;
-          break;
-        // Add other brush types similarly
-        default:
-          fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
-      }
     }
-  }, [brushColor, brushWidth, brushType]);
+  }, [brushColor, brushWidth]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -95,22 +45,22 @@ const PaintApp = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleDrawingToggle = () => {
+  const handlePencilTool = () => {
     setIsDrawing(prevIsDrawing => {
       const newDrawingState = !prevIsDrawing;
       fabricCanvas.current.isDrawingMode = newDrawingState;
       return newDrawingState;
     });
   };
-
+      {/* FILE FORMAT CHOICE DROPDOWN -----------------------------------------------*/ }
   const handleSave = () => {
     const canvas = fabricCanvas.current;
     if (canvas) {
-      const dataURL = canvas.toDataURL('image/png');
+      const dataURL = canvas.toDataURL(`image/${fileFormat}`);
       // Trigger download
       const link = document.createElement('a');
       link.href = dataURL;
-      link.download = 'drawing.png';
+      link.download = `drawing.${fileFormat}`;
       link.click();
     }
   };
@@ -151,16 +101,9 @@ const PaintApp = () => {
 
   return (
     <div>
-      <button onClick={handleDrawingToggle}>
-        {isDrawing ? 'Stop Drawing' : 'Start Drawing'}
+      <button onClick={handlePencilTool}>
+        {isDrawing ? 'Stop Drawing' : 'Pencil Tool'}
       </button>
-      <button onClick={() => setBrushType('pencil')}>Pencil</button>
-      <button onClick={() => setBrushType('airbrush')}>Airbrush</button>
-      <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
-      <button onClick={() => setBrushType('marker')}>Marker</button>
-      <button onClick={() => setBrushType('crayon')}>Crayon</button>
-      <button onClick={() => setBrushType('calligraphy')}>Calligraphy Pen</button>
-      <button onClick={() => setBrushType('circle')}>Circle Brush</button>
       <button onClick={handleSave}>Save</button>
       <button onClick={() => drawShape('rectangle')}>Draw Rectangle</button>
       <button onClick={() => drawShape('circle')}>Draw Circle</button>
@@ -179,6 +122,13 @@ const PaintApp = () => {
         onChange={(e) => setBrushWidth(parseInt(e.target.value, 10))} 
         title="Brush Width"
       />
+      {/* FILE FORMAT CHOICE DROPDOWN -----------------------------------------------*/ }
+      <select value={fileFormat} onChange={(e) => setFileFormat(e.target.value)}>
+        <option value="png">PNG</option>
+        <option value="jpeg">JPEG</option>
+        <option value="bmp">BMP</option>
+        <option value="gif">GIF</option>
+      </select>
 
       <canvas ref={canvasRef} />
     </div>

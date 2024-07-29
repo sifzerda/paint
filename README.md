@@ -157,7 +157,7 @@ Optimization:
 - [ ]
 - [ ] 
 - [ ] 
-- [ ] 
+- [x] save: provide choice of file extension (currently working inside /copies/saveasfileformat.jsx)
 - [ ] 
 - [ ] 
 - [ ] 
