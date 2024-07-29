@@ -20,11 +20,7 @@ const PaintApp = () => {
 
     const handleKeyDown = (event) => {
       if (event.key === 'Delete' || event.key === 'Backspace') {
-        const activeObject = fabricCanvas.current.getActiveObject();
-        if (activeObject) {
-          fabricCanvas.current.remove(activeObject);
-          fabricCanvas.current.discardActiveObject().renderAll();
-        }
+        deleteSelectedObject();
       }
     };
 
@@ -105,7 +101,7 @@ const PaintApp = () => {
   }, []);
 
   const handleDrawingToggle = () => {
-    setIsDrawing(prevIsDrawing => {
+    setIsDrawing((prevIsDrawing) => {
       const newDrawingState = !prevIsDrawing;
       fabricCanvas.current.isDrawingMode = newDrawingState;
       return newDrawingState;
@@ -156,6 +152,14 @@ const PaintApp = () => {
     }
   };
 
+  const deleteSelectedObject = () => {
+    const activeObject = fabricCanvas.current.getActiveObject();
+    if (activeObject) {
+      fabricCanvas.current.remove(activeObject);
+      fabricCanvas.current.discardActiveObject().renderAll();
+    }
+  };
+
   return (
     <div>
       <button onClick={handleDrawingToggle}>
@@ -171,19 +175,20 @@ const PaintApp = () => {
       <button onClick={handleSave}>Save</button>
       <button onClick={() => drawShape('rectangle')}>Draw Rectangle</button>
       <button onClick={() => drawShape('circle')}>Draw Circle</button>
+      <button onClick={deleteSelectedObject}>Delete</button>
 
-      <input 
-        type="color" 
-        value={brushColor} 
-        onChange={(e) => setBrushColor(e.target.value)} 
+      <input
+        type="color"
+        value={brushColor}
+        onChange={(e) => setBrushColor(e.target.value)}
         title="Brush Color"
       />
-      <input 
-        type="range" 
-        min="1" 
-        max="20" 
-        value={brushWidth} 
-        onChange={(e) => setBrushWidth(parseInt(e.target.value, 10))} 
+      <input
+        type="range"
+        min="1"
+        max="20"
+        value={brushWidth}
+        onChange={(e) => setBrushWidth(parseInt(e.target.value, 10))}
         title="Brush Width"
       />
 

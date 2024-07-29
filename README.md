@@ -164,7 +164,7 @@ Optimization:
   - [ ] Crayon
   - [ ] 
 - [x] save: provide choice of file extension (currently working inside /copies/saveasfileformat.jsx)
-- [ ] Can delete selecting and pressing delete key
+- [x] Can delete selecting and pressing delete key
 - [ ] Create a trash can icon that also deletes whatever is selected
 - [ ] create undo and redo buttons that undo or redo most recent action
 - [ ] 
