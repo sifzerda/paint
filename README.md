@@ -3,6 +3,8 @@
 packages and tech:
 
 - fabric -- apparently better suited for ms paint
-- paper
+- ~~paper~~
 - konva (optimization)
 - lodash (optimization)
+
+- 

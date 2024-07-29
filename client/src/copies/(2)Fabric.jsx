@@ -1,3 +1,5 @@
+// MS Paint with Fabric -- note only v4 works currently
+
 import { useRef, useEffect, useState } from 'react';
 import { fabric } from 'fabric';
 
