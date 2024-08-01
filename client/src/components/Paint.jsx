@@ -5,9 +5,11 @@ const PaintApp = () => {
   const canvasRef = useRef(null);
   const fabricCanvas = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [isLineDrawing, setIsLineDrawing] = useState(false);
   const [brushColor, setBrushColor] = useState('#000000');
   const [brushWidth, setBrushWidth] = useState(5);
   const [brushType, setBrushType] = useState('pencil');
+  const lineRef = useRef(null);
 
   useEffect(() => {
     fabricCanvas.current = new fabric.Canvas(canvasRef.current, {
@@ -79,12 +81,58 @@ const PaintApp = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    const canvas = fabricCanvas.current;
+
+    const startLine = (event) => {
+      if (isLineDrawing) {
+        const pointer = canvas.getPointer(event.e);
+        lineRef.current = new fabric.Line([pointer.x, pointer.y, pointer.x, pointer.y], {
+          stroke: brushColor,
+          strokeWidth: brushWidth,
+          selectable: false,
+        });
+        canvas.add(lineRef.current);
+      }
+    };
+
+    const drawLine = (event) => {
+      if (isLineDrawing && lineRef.current) {
+        const pointer = canvas.getPointer(event.e);
+        lineRef.current.set({ x2: pointer.x, y2: pointer.y });
+        canvas.renderAll();
+      }
+    };
+
+    const endLine = () => {
+      if (isLineDrawing && lineRef.current) {
+        lineRef.current.setCoords();
+        lineRef.current.selectable = true;
+        lineRef.current = null;
+      }
+    };
+
+    canvas.on('mouse:down', startLine);
+    canvas.on('mouse:move', drawLine);
+    canvas.on('mouse:up', endLine);
+
+    return () => {
+      canvas.off('mouse:down', startLine);
+      canvas.off('mouse:move', drawLine);
+      canvas.off('mouse:up', endLine);
+    };
+  }, [isLineDrawing, brushColor, brushWidth]);
+
   const handleDrawingToggle = () => {
     setIsDrawing((prevIsDrawing) => {
       const newDrawingState = !prevIsDrawing;
       fabricCanvas.current.isDrawingMode = newDrawingState;
       return newDrawingState;
     });
+  };
+
+  const handleLineDrawingToggle = () => {
+    setIsLineDrawing((prevIsLineDrawing) => !prevIsLineDrawing);
   };
 
   const handleSave = () => {
@@ -144,14 +192,17 @@ const PaintApp = () => {
       <button onClick={handleDrawingToggle}>
         {isDrawing ? 'Stop Drawing' : 'Start Drawing'}
       </button>
+      <button onClick={handleLineDrawingToggle}>
+        {isLineDrawing ? 'Stop Line Drawing' : 'Start Line Drawing'}
+      </button>
       <button onClick={() => setBrushType('pencil')}>Pencil</button>
       <button onClick={() => setBrushType('airbrush')}>Airbrush</button>
-      <button onClick={() => setBrushType('pattern')}>Pattern Brush</button> 
+      <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
       <button onClick={() => setBrushType('circle')}>Circle Brush</button>
       <button onClick={handleSave}>💾 SAVE</button>
       <button onClick={() => drawShape('rectangle')}>Draw Rectangle</button>
       <button onClick={() => drawShape('circle')}>Draw Circle</button>
-      <button onClick={deleteSelectedObject}>🗑️ DELETE </button>
+      <button onClick={deleteSelectedObject}>🗑️ DELETE</button>
 
       <input
         type="color"
