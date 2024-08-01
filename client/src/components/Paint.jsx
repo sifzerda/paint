@@ -174,14 +174,31 @@ const PaintApp = () => {
           break;
         case 'hexagon':
           const hexagonPoints = [];
-          const sideLength = 50;
+          const hexagonSideLength = 50;
           for (let i = 0; i < 6; i++) {
             const angle = (Math.PI / 3) * i;
-            const x = sideLength * Math.cos(angle);
-            const y = sideLength * Math.sin(angle);
+            const x = hexagonSideLength * Math.cos(angle);
+            const y = hexagonSideLength * Math.sin(angle);
             hexagonPoints.push({ x, y });
           }
           newShape = new fabric.Polygon(hexagonPoints, {
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
+        case 'pentagon':
+          const pentagonPoints = [];
+          const pentagonSideLength = 50;
+          for (let i = 0; i < 5; i++) {
+            const angle = (Math.PI * 2 / 5) * i;
+            const x = pentagonSideLength * Math.cos(angle);
+            const y = pentagonSideLength * Math.sin(angle);
+            pentagonPoints.push({ x, y });
+          }
+          newShape = new fabric.Polygon(pentagonPoints, {
             left: 100,
             top: 100,
             fill: 'transparent',
@@ -220,6 +237,7 @@ const PaintApp = () => {
       <button onClick={() => drawShape('rectangle')}>Draw Rectangle</button>
       <button onClick={() => drawShape('circle')}>Draw Circle</button>
       <button onClick={() => drawShape('hexagon')}>Draw Hexagon</button>
+      <button onClick={() => drawShape('pentagon')}>Draw Pentagon</button>
       <button onClick={deleteSelectedObject}>🗑️ DELETE</button>
 
       <input
