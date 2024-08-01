@@ -473,55 +473,57 @@ const PaintApp = () => {
   };
 
   return (
-<div className='paint'>
+    <div className='paint'>
+    <div className='paint-toolbar'>
 
-<h2>Draw Toggle</h2>
-<div className='button-container'>
-      <button onClick={handleDrawingToggle}>
-        {isDrawing ? 'Stop Drawing' : 'Start Drawing'}
-      </button>
-      <button onClick={handleLineDrawingToggle}>
-        {isLineDrawing ? 'Stop Line Drawing' : 'Start Line Drawing'}
-      </button>
+
+      <h2>Draw Toggle</h2>
+      <div className='button-container'>
+        <button onClick={handleDrawingToggle}>
+          {isDrawing ? 'Stop Draw' : 'Start Draw'}
+        </button>
+        <button onClick={handleLineDrawingToggle}>
+          {isLineDrawing ? 'Start Line' : 'Stop Line'}
+        </button>
       </div>
 
-<h2>Actions</h2>
-<div className='button-container'>
-      <button onClick={handleSave}>💾 SAVE</button>
-      <button onClick={deleteSelectedObject}>Delete Selected Object</button>
-</div>
+      <h2>Actions</h2>
+      <div className='button-container'>
+        <button onClick={handleSave}>💾</button>
+        <button onClick={deleteSelectedObject}>🗑️</button>
+      </div>
 
-<h2>Brushes</h2>
-<div className='button-container'>
-      <button onClick={() => setBrushType('pencil')}>Pencil</button>
-      <button onClick={() => setBrushType('airbrush')}>Airbrush</button>
-      <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
-      <button onClick={() => setBrushType('circle')}>Circle Brush</button>
+      <h2>Brushes</h2>
+      <div className='button-container'>
+        <button onClick={() => setBrushType('pencil')}>✏️</button>
+        <button onClick={() => setBrushType('airbrush')}>🔫</button>
+        <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
+        <button onClick={() => setBrushType('circle')}>◎</button>
       </div>
 
       <h2>Shapes</h2>
       <div className='button-container'>
-      <button onClick={() => drawShape('rectangle')}>▯</button>
-      <button onClick={() => drawShape('circle')}>⚪️</button>
-      <button onClick={() => drawShape('hexagon')}>⬡</button>
-      <button onClick={() => drawShape('pentagon')}>⬠</button>
-      <button onClick={() => drawShape('triangle')}>ꕔ</button>
-      <button onClick={() => drawShape('rightAngleTriangle')}>◺</button>
-      <button onClick={() => drawShape('heart')}>❤️</button>
-      <button onClick={() => drawShape('star')}>⭐</button>
-      <button onClick={() => drawShape('speechBubble')}>🗨️</button>
-      <button onClick={() => drawShape('thoughtBubble')}>💭</button>
-      <button onClick={() => drawShape('leftArrow')}>⇦</button>
-      <button onClick={() => drawShape('downArrow')}>⇩</button>
-      <button onClick={() => drawShape('upArrow')}>⇧</button>
-      <button onClick={() => drawShape('rightArrow')}>⇨</button>
-      <button onClick={() => drawShape('cross')}>❌</button>
-      <button onClick={() => drawShape('square')}>⬜️</button>
-      <button onClick={() => drawShape('lightningBolt')}>⚡</button>
+        <button onClick={() => drawShape('rectangle')}>▯</button>
+        <button onClick={() => drawShape('circle')}>⚪️</button>
+        <button onClick={() => drawShape('hexagon')}>⬡</button>
+        <button onClick={() => drawShape('pentagon')}>⬠</button>
+        <button onClick={() => drawShape('triangle')}>ꕔ</button>
+        <button onClick={() => drawShape('rightAngleTriangle')}>◺</button>
+        <button onClick={() => drawShape('heart')}>❤️</button>
+        <button onClick={() => drawShape('star')}>⭐</button>
+        <button onClick={() => drawShape('speechBubble')}>🗨️</button>
+        <button onClick={() => drawShape('thoughtBubble')}>💭</button>
+        <button onClick={() => drawShape('leftArrow')}>⇦</button>
+        <button onClick={() => drawShape('downArrow')}>⇩</button>
+        <button onClick={() => drawShape('upArrow')}>⇧</button>
+        <button onClick={() => drawShape('rightArrow')}>⇨</button>
+        <button onClick={() => drawShape('cross')}>❌</button>
+        <button onClick={() => drawShape('square')}>⬜️</button>
+        <button onClick={() => drawShape('lightningBolt')}>⚡</button>
       </div>
 
       <div>
-      <h2>Config</h2>
+        <h2>Config</h2>
         <label>
           Brush Color:
           <input
@@ -541,6 +543,10 @@ const PaintApp = () => {
           />
         </label>
       </div>
+      </div>
+
+
+
       <canvas ref={canvasRef} />
     </div>
   );
