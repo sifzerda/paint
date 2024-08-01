@@ -464,15 +464,6 @@ const PaintApp = () => {
     }
   };
 
-  const rotateSelectedObject = () => {
-    const canvas = fabricCanvas.current;
-    const activeObject = canvas.getActiveObject();
-    if (activeObject) {
-      activeObject.rotate((activeObject.angle || 0) + 90);
-      canvas.renderAll();
-    }
-  };
-
   const deleteSelectedObject = () => {
     const activeObject = fabricCanvas.current.getActiveObject();
     if (activeObject) {
@@ -499,7 +490,7 @@ const PaintApp = () => {
       <div className='button-container'>
         <button onClick={handleSave}>💾</button>
         <button onClick={deleteSelectedObject}>🗑️</button>
-        <button onClick={rotateSelectedObject}>↻</button>
+        <button onClick={rotateSelectedObject}>Rotate Selected</button>
       </div>
 
       <h2>Brushes</h2>
