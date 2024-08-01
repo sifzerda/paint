@@ -473,6 +473,24 @@ const PaintApp = () => {
     }
   };
 
+  const flipVertical = () => {
+    const canvas = fabricCanvas.current;
+    const activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.toggle('flipY');
+      canvas.renderAll();
+    }
+  };
+
+  const flipHorizontal = () => {
+    const canvas = fabricCanvas.current;
+    const activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.toggle('flipX');
+      canvas.renderAll();
+    }
+  };
+
   const deleteSelectedObject = () => {
     const activeObject = fabricCanvas.current.getActiveObject();
     if (activeObject) {
@@ -500,6 +518,8 @@ const PaintApp = () => {
         <button onClick={handleSave}>💾</button>
         <button onClick={deleteSelectedObject}>🗑️</button>
         <button onClick={rotateSelectedObject}>↻</button>
+        <button onClick={flipVertical}>↕️</button>
+        <button onClick={flipHorizontal}>↔️</button>
       </div>
 
       <h2>Brushes</h2>
