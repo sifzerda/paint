@@ -473,18 +473,31 @@ const PaintApp = () => {
   };
 
   return (
-    <div>
+<div className='paint'>
+
+<h2>Draw Toggle</h2>
+<div className='button-container'>
       <button onClick={handleDrawingToggle}>
         {isDrawing ? 'Stop Drawing' : 'Start Drawing'}
       </button>
       <button onClick={handleLineDrawingToggle}>
         {isLineDrawing ? 'Stop Line Drawing' : 'Start Line Drawing'}
       </button>
+      </div>
+
+<h2>Actions</h2>
+<div className='button-container'>
+      <button onClick={handleSave}>💾 SAVE</button>
+      <button onClick={deleteSelectedObject}>Delete Selected Object</button>
+</div>
+
+<h2>Brushes</h2>
+<div className='button-container'>
       <button onClick={() => setBrushType('pencil')}>Pencil</button>
       <button onClick={() => setBrushType('airbrush')}>Airbrush</button>
       <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
       <button onClick={() => setBrushType('circle')}>Circle Brush</button>
-      <button onClick={handleSave}>💾 SAVE</button>
+
       <button onClick={() => drawShape('rectangle')}>Draw Rectangle</button>
       <button onClick={() => drawShape('circle')}>Draw Circle</button>
       <button onClick={() => drawShape('hexagon')}>Draw Hexagon</button>
@@ -502,8 +515,10 @@ const PaintApp = () => {
       <button onClick={() => drawShape('cross')}>Draw Cross</button>
       <button onClick={() => drawShape('square')}>Draw Square</button>
       <button onClick={() => drawShape('lightningBolt')}>Draw Lightning Bolt</button>
-      <button onClick={deleteSelectedObject}>Delete Selected Object</button>
+      </div>
+
       <div>
+      <h2>Config</h2>
         <label>
           Brush Color:
           <input
