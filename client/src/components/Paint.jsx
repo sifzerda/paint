@@ -483,7 +483,7 @@ const PaintApp = () => {
           {isDrawing ? 'Stop Draw' : 'Start Draw'}
         </button>
         <button onClick={handleLineDrawingToggle}>
-          {isLineDrawing ? 'Start Line' : 'Stop Line'}
+          {isLineDrawing ? 'Stop Line' : 'Start Line'}
         </button>
       </div>
 
