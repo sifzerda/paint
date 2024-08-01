@@ -3,16 +3,18 @@
 .canvas-container {
   border: 1px solid #000;
   margin: 10px 0;
-  position: relative; /* Position relative to handle absolute positioning of canvas */
-  height:  1200px!important;
-  width:  2200px!important;
+  position: relative;
+  /* Position relative to handle absolute positioning of canvas */
+  max-height: 1200px !important;
+  max-width: 2200px !important;
 }
 
 canvas {
   border: 1px solid #000;
-  position: absolute; /* Position absolute to fill the container */
-  height:  1200px!important;
-  width:  2200px!important;
+  position: absolute;
+  /* Position absolute to fill the container */
+  max-height: 1200px !important;
+  max-width: 2200px !important;
 }
 
 .paint {
@@ -20,60 +22,67 @@ canvas {
   flex-direction: column;
   padding: 20px;
 }
-  
-  .paint h2 {
-    margin-top: 0;
-    font-size: 22px;
-    color: rgb(95, 23, 10);
-  }
-  
-  input[type="color"] {
-    display: block;
-    margin: 5px 0;
-  }
-  
-  input[type="range"] {
-    display: block;
-    margin: 5px 0;
-  }
 
-  .paint-toolbar {
-    display: flex; /* Use flexbox for layout */
-    flex-wrap: wrap; /* Allow buttons to wrap to the next line */
-    background-color: #f0f0f0;
-    justify-content: left; /* Center buttons within container */
-  }
+.paint h2 {
+  margin-top: 0;
+  font-size: 22px;
+  color: rgb(95, 23, 10);
+}
 
-  .button-container {
-    display: flex; /* Use flexbox for layout */
-    flex-wrap: wrap; /* Allow buttons to wrap to the next line */
-    gap: 10px;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-bottom: 2px solid #ccc;
-    justify-content: left; /* Center buttons within container */
-    max-height: 150px;
-  }
-  
-  .button-container button {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    max-height: 50px;
-    flex: 1 1 auto; /* Allow buttons to grow and shrink */
-    margin: 5px 0;
-    white-space: nowrap; /* Prevent text from wrapping */
-    max-width: auto; /* Allow buttons to grow based on content */
-  }
-  
-  .button-container button:hover {
-    background-color: #0056b3;
-  }
+input[type="color"] {
+  display: block;
+  margin: 5px 0;
+}
 
-  .button-container h3 {
-font-size: 19px;
-color: black;
-  }
+input[type="range"] {
+  display: block;
+  margin: 5px 0;
+}
+
+.paint-toolbar {
+  display: flex;
+  /* Use flexbox for layout */
+  flex-wrap: wrap;
+  /* Allow buttons to wrap to the next line */
+  background-color: #f0f0f0;
+  justify-content: left;
+  /* Center buttons within container */
+}
+
+.button-container {
+  display: flex;
+  /* Use flexbox for layout */
+  flex-wrap: wrap;
+  /* Allow buttons to wrap to the next line */
+  gap: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #ccc;
+  justify-content: left;
+  /* Center buttons within container */
+  max-height: 150px;
+}
+
+.button-container button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  max-height: 50px;
+  margin: 5px 0;
+  white-space: nowrap;
+  /* Prevent text from wrapping */
+  max-width: auto;
+  /* Allow buttons to grow based on content */
+}
+
+.button-container button:hover {
+  background-color: #0056b3;
+}
+
+.button-container h3 {
+  font-size: 19px;
+  color: black;
+}
