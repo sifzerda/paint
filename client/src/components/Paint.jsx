@@ -572,8 +572,8 @@ const PaintApp = () => {
         <div>
           <h2>Config</h2>
 
-          <div>
-            <label>Brush Color:</label>
+          <div className='button-container'>
+            <h3>Brush Color:</h3>
 
             <input
             type='color'
@@ -582,10 +582,10 @@ const PaintApp = () => {
           />
           <button onClick={handleAddColorClick}>OK</button>
 
-          </div>
 
-          <div>
-            <h2>Recent Colors:</h2>
+
+          <div className='button-container'>
+            <h3>Recent Colors:</h3>
             {recentColors.map((color, index) => (
               <button
                 key={index}
@@ -600,7 +600,8 @@ const PaintApp = () => {
             ))}
           </div>
 
-          <label>
+          <div className='button-container'>
+          <h3>
             Brush Width:
             <input
               type="range"
@@ -609,10 +610,13 @@ const PaintApp = () => {
               value={brushWidth}
               onChange={(e) => setBrushWidth(parseInt(e.target.value, 10))}
             />
-          </label>
+          </h3>
+          </div>
+
+          
         </div>
       </div>
-
+      </div>
 
 
       <canvas ref={canvasRef} />
