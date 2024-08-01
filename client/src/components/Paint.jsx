@@ -9,6 +9,7 @@ const PaintApp = () => {
   const [brushColor, setBrushColor] = useState('#000000');
   const [brushWidth, setBrushWidth] = useState(5);
   const [brushType, setBrushType] = useState('pencil');
+  const [recentColors, setRecentColors] = useState([]);
   const lineRef = useRef(null);
 
   useEffect(() => {
@@ -238,23 +239,23 @@ const PaintApp = () => {
           });
           break;
 
-          case 'octagon':
-            const octagonPoints = [];
-            const octagonSideLength = 50;
-            for (let i = 0; i < 8; i++) {
-              const angle = (Math.PI / 4) * i;
-              const x = octagonSideLength * Math.cos(angle);
-              const y = octagonSideLength * Math.sin(angle);
-              octagonPoints.push({ x, y });
-            }
-            newShape = new fabric.Polygon(octagonPoints, {
-              left: 100,
-              top: 100,
-              fill: 'transparent',
-              stroke: brushColor,
-              strokeWidth: brushWidth,
-            });
-            break;
+        case 'octagon':
+          const octagonPoints = [];
+          const octagonSideLength = 50;
+          for (let i = 0; i < 8; i++) {
+            const angle = (Math.PI / 4) * i;
+            const x = octagonSideLength * Math.cos(angle);
+            const y = octagonSideLength * Math.sin(angle);
+            octagonPoints.push({ x, y });
+          }
+          newShape = new fabric.Polygon(octagonPoints, {
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
 
         case 'heart':
           // Create a new fabric.Path using the provided heart path data
@@ -404,8 +405,8 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
-          case 'cross':
-            newShape = new fabric.Path(`
+        case 'cross':
+          newShape = new fabric.Path(`
               M 20% 0%
               L 0% 20%
               L 30% 50%
@@ -420,13 +421,13 @@ const PaintApp = () => {
               L 50% 30%
               Z
               `, {
-              left: 100,
-              top: 100,
-              fill: 'transparent',
-              stroke: brushColor,
-              strokeWidth: brushWidth,
-            });
-            break;
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
         case 'square':
           newShape = new fabric.Rect({
             left: 100,
@@ -499,79 +500,104 @@ const PaintApp = () => {
     }
   };
 
+  const handleBrushColorChange = (color) => {
+    setBrushColor(color);
+    setRecentColors((prevColors) => {
+      const newColors = [color, ...prevColors.filter(c => c !== color)];
+      return newColors.slice(0, 10);
+    });
+  };
+
+  const handleRecentColorClick = (color) => {
+    setBrushColor(color);
+  };
+
   return (
     <div className='paint'>
-    <div className='paint-toolbar'>
+      <div className='paint-toolbar'>
 
-      <h2>Draw Toggle</h2>
-      <div className='button-container'>
-        <button onClick={handleDrawingToggle}>
-          {isDrawing ? 'Stop Draw' : 'Start Draw'}
-        </button>
-        <button onClick={handleLineDrawingToggle}>
-          {isLineDrawing ? 'Stop Line' : 'Start Line'}
-        </button>
-      </div>
+        <h2>Draw Toggle</h2>
+        <div className='button-container'>
+          <button onClick={handleDrawingToggle}>
+            {isDrawing ? 'Stop Draw' : 'Start Draw'}
+          </button>
+          <button onClick={handleLineDrawingToggle}>
+            {isLineDrawing ? 'Stop Line' : 'Start Line'}
+          </button>
+        </div>
 
-      <h2>Actions</h2>
-      <div className='button-container'>
-        <button onClick={handleSave}>💾</button>
-        <button onClick={deleteSelectedObject}>🗑️</button>
-        <button onClick={rotateSelectedObject}>↻</button>
-        <button onClick={flipVertical}>↕️</button>
-        <button onClick={flipHorizontal}>↔️</button>
-      </div>
+        <h2>Actions</h2>
+        <div className='button-container'>
+          <button onClick={handleSave}>💾</button>
+          <button onClick={deleteSelectedObject}>🗑️</button>
+          <button onClick={rotateSelectedObject}>↻</button>
+          <button onClick={flipVertical}>↕️</button>
+          <button onClick={flipHorizontal}>↔️</button>
+        </div>
 
-      <h2>Brushes</h2>
-      <div className='button-container'>
-        <button onClick={() => setBrushType('pencil')}>✏️</button>
-        <button onClick={() => setBrushType('airbrush')}>🔫</button>
-        <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
-        <button onClick={() => setBrushType('circle')}>◎</button>
-      </div>
+        <h2>Brushes</h2>
+        <div className='button-container'>
+          <button onClick={() => setBrushType('pencil')}>✏️</button>
+          <button onClick={() => setBrushType('airbrush')}>🔫</button>
+          <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
+          <button onClick={() => setBrushType('circle')}>◎</button>
+        </div>
 
-      <h2>Shapes</h2>
-      <div className='button-container'>
-        <button onClick={() => drawShape('rectangle')}>▯</button>
-        <button onClick={() => drawShape('circle')}>⚪️</button>
-        <button onClick={() => drawShape('hexagon')}>⬡</button>
-        <button onClick={() => drawShape('pentagon')}>⬠</button>
-        <button onClick={() => drawShape('triangle')}>ꕔ</button>
-        <button onClick={() => drawShape('rightAngleTriangle')}>◺</button>
-        <button onClick={() => drawShape('heart')}>❤️</button>
-        <button onClick={() => drawShape('star')}>⭐</button>
-        <button onClick={() => drawShape('speechBubble')}>🗨️</button>
-        <button onClick={() => drawShape('thoughtBubble')}>💭</button>
-        <button onClick={() => drawShape('leftArrow')}>⇦</button>
-        <button onClick={() => drawShape('downArrow')}>⇩</button>
-        <button onClick={() => drawShape('upArrow')}>⇧</button>
-        <button onClick={() => drawShape('rightArrow')}>⇨</button>
-        <button onClick={() => drawShape('cross')}>❌</button>
-        <button onClick={() => drawShape('square')}>⬜️</button>
-        <button onClick={() => drawShape('lightningBolt')}>⚡</button>
-      </div>
+        <h2>Shapes</h2>
+        <div className='button-container'>
+          <button onClick={() => drawShape('rectangle')}>▯</button>
+          <button onClick={() => drawShape('circle')}>⚪️</button>
+          <button onClick={() => drawShape('hexagon')}>⬡</button>
+          <button onClick={() => drawShape('pentagon')}>⬠</button>
+          <button onClick={() => drawShape('triangle')}>ꕔ</button>
+          <button onClick={() => drawShape('rightAngleTriangle')}>◺</button>
+          <button onClick={() => drawShape('heart')}>❤️</button>
+          <button onClick={() => drawShape('star')}>⭐</button>
+          <button onClick={() => drawShape('speechBubble')}>🗨️</button>
+          <button onClick={() => drawShape('thoughtBubble')}>💭</button>
+          <button onClick={() => drawShape('leftArrow')}>⇦</button>
+          <button onClick={() => drawShape('downArrow')}>⇩</button>
+          <button onClick={() => drawShape('upArrow')}>⇧</button>
+          <button onClick={() => drawShape('rightArrow')}>⇨</button>
+          <button onClick={() => drawShape('cross')}>❌</button>
+          <button onClick={() => drawShape('square')}>⬜️</button>
+          <button onClick={() => drawShape('lightningBolt')}>⚡</button>
+        </div>
 
-      <div>
-        <h2>Config</h2>
-        <label>
-          Brush Color:
-          <input
-            type="color"
-            value={brushColor}
-            onChange={(e) => setBrushColor(e.target.value)}
-          />
-        </label>
-        <label>
-          Brush Width:
-          <input
-            type="range"
-            min="1"
-            max="50"
-            value={brushWidth}
-            onChange={(e) => setBrushWidth(parseInt(e.target.value, 10))}
-          />
-        </label>
-      </div>
+        <div>
+          <h2>Config</h2>
+
+          <div>
+            <label>Brush Color:</label>
+            <input
+              type="color"
+              value={brushColor}
+              onChange={(e) => handleBrushColorChange(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <h2>Recent Colors:</h2>
+            {recentColors.map((color, index) => (
+              <button
+                key={index}
+                style={{ backgroundColor: color, width: 40, height: 40, border: 'none', margin: 2 }}
+                onClick={() => handleRecentColorClick(color)}
+              />
+            ))}
+          </div>
+
+          <label>
+            Brush Width:
+            <input
+              type="range"
+              min="1"
+              max="50"
+              value={brushWidth}
+              onChange={(e) => setBrushWidth(parseInt(e.target.value, 10))}
+            />
+          </label>
+        </div>
       </div>
 
 
