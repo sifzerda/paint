@@ -237,8 +237,6 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
-
-
         case 'heart':
           // Create a new fabric.Path using the provided heart path data
           newShape = new fabric.Path(`
@@ -255,12 +253,186 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
-        default:
-          return;
+          case 'star':
+            newShape = new fabric.Path(`
+              M 50 15
+              L 61 35
+              L 83 35
+              L 67 50
+              L 75 72
+              L 50 60
+              L 25 72
+              L 33 50
+              L 17 35
+              L 39 35
+              Z
+            `, {
+              left: 100,
+              top: 100,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+            });
+            break;
+          case 'speechBubble':
+            newShape = new fabric.Path(`
+              M 20 10
+              Q 20 0 40 0
+              Q 60 0 60 20
+              Q 60 30 50 30
+              Q 50 40 40 40
+              Q 30 40 30 30
+              Q 20 30 20 20
+              Z
+              M 30 40
+              L 30 50
+              L 50 50
+              L 50 40
+            `, {
+              left: 100,
+              top: 100,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+            });
+            break;
+          case 'thoughtBubble':
+            newShape = new fabric.Path(`
+              M 30 10
+              Q 20 0 10 0
+              Q 0 0 0 10
+              Q 0 20 10 20
+              Q 20 20 20 10
+              Q 20 0 30 0
+              Z
+              M 20 20
+              L 20 30
+              L 30 30
+              L 30 20
+            `, {
+              left: 100,
+              top: 100,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+            });
+            break;
+          case 'leftArrow':
+            newShape = new fabric.Path(`
+              M 10 20
+              L 30 20
+              L 20 10
+              L 20 25
+              L 0 25
+              L 0 15
+              L 20 15
+              L 20 0
+              L 30 0
+              L 10 20
+              Z
+            `, {
+              left: 100,
+              top: 100,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+            });
+            break;
+          case 'downArrow':
+            newShape = new fabric.Path(`
+              M 20 0
+              L 20 30
+              L 10 30
+              L 10 20
+              L 0 20
+              L 20 40
+              L 40 20
+              L 30 20
+              L 20 30
+              Z
+            `, {
+              left: 100,
+              top: 100,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+            });
+            break;
+          case 'upArrow':
+            newShape = new fabric.Path(`
+              M 20 30
+              L 20 0
+              L 10 0
+              L 10 10
+              L 0 10
+              L 20 -10
+              L 40 10
+              L 30 10
+              L 20 0
+              Z
+            `, {
+              left: 100,
+              top: 100,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+            });
+            break;
+          case 'rightArrow':
+            newShape = new fabric.Path(`
+              M 30 20
+              L 0 20
+              L 10 30
+              L 10 15
+              L 30 15
+              L 30 0
+              L 40 0
+              L 20 20
+              Z
+            `, {
+              left: 100,
+              top: 100,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+            });
+            break;
+          case 'square':
+            newShape = new fabric.Rect({
+              left: 100,
+              top: 100,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+              width: 100,
+              height: 100,
+            });
+            break;
+          case 'lightningBolt':
+            newShape = new fabric.Path(`
+              M 20 0
+              L 40 30
+              L 30 30
+              L 20 50
+              L 40 50
+              L 20 100
+              L 30 50
+              L 50 50
+              Z
+            `, {
+              left: 100,
+              top: 100,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+            });
+            break;
+          default:
+            return;
+        }
+        canvas.add(newShape);
       }
-      canvas.add(newShape);
-    }
-  };
+    };
 
   const deleteSelectedObject = () => {
     const activeObject = fabricCanvas.current.getActiveObject();
@@ -290,6 +462,15 @@ const PaintApp = () => {
       <button onClick={() => drawShape('triangle')}>Draw Triangle</button>
       <button onClick={() => drawShape('rightAngleTriangle')}>Draw Right Angle Triangle</button>
       <button onClick={() => drawShape('heart')}>Draw Heart</button>
+      <button onClick={() => drawShape('star')}>Draw Star</button>
+      <button onClick={() => drawShape('speechBubble')}>Draw Speech Bubble</button>
+      <button onClick={() => drawShape('thoughtBubble')}>Draw Thought Bubble</button>
+      <button onClick={() => drawShape('leftArrow')}>Draw Left Arrow</button>
+      <button onClick={() => drawShape('downArrow')}>Draw Down Arrow</button>
+      <button onClick={() => drawShape('upArrow')}>Draw Up Arrow</button>
+      <button onClick={() => drawShape('rightArrow')}>Draw Right Arrow</button>
+      <button onClick={() => drawShape('square')}>Draw Square</button>
+      <button onClick={() => drawShape('lightningBolt')}>Draw Lightning Bolt</button>
       <button onClick={deleteSelectedObject}>Delete Selected Object</button>
       <div>
         <label>
