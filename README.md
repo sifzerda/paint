@@ -1,15 +1,3 @@
- 
-
-packages and tech:
-
-- fabric.js -- apparently better suited for ms paint
-- ~~paper.js~~
-- konva (optimization)
-![Konva](https://img.shields.io/badge/Konva-0D83CD.svg?style=for-the-badge&logo=Konva&logoColor=white)
-![Lodash](https://img.shields.io/badge/Lodash-3492FF.svg?style=for-the-badge&logo=Lodash&logoColor=white)
-- lodash (optimization)
-
-
 # Paint 🎨
 
 ## Table of Contents
@@ -91,7 +79,16 @@ import { fabric } from 'fabric'; // v5
 - ~~<strong>Paper.js: </strong>~~ Alternative to Fabric, canvas and image manipulation Library API. Able to make a paint style app, but lacks features of Fabric out of box.
 - Konva:
 - Lodash:
-- 
+
+packages and tech:
+
+- fabric.js -- apparently better suited for ms paint
+- ~~paper.js~~
+- konva (optimization)
+![Konva](https://img.shields.io/badge/Konva-0D83CD.svg?style=for-the-badge&logo=Konva&logoColor=white)
+![Lodash](https://img.shields.io/badge/Lodash-3492FF.svg?style=for-the-badge&logo=Lodash&logoColor=white)
+- lodash (optimization)
+
 
 ## (6) Dev Stuff: Building:
 
