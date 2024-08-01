@@ -501,7 +501,6 @@ const PaintApp = () => {
       <button onClick={() => drawShape('rightArrow')}>Draw Right Arrow</button>
       <button onClick={() => drawShape('cross')}>Draw Cross</button>
       <button onClick={() => drawShape('square')}>Draw Square</button>
-      <button onClick={() => drawShape('octagon')}>Draw Octagon</button>
       <button onClick={() => drawShape('lightningBolt')}>Draw Lightning Bolt</button>
       <button onClick={deleteSelectedObject}>Delete Selected Object</button>
       <div>
