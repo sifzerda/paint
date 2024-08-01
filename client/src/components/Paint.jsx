@@ -206,6 +206,23 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+        case 'triangle':
+          const trianglePoints = [];
+          const triangleSideLength = 100;
+          for (let i = 0; i < 3; i++) {
+            const angle = (Math.PI * 2 / 3) * i - Math.PI / 2;
+            const x = triangleSideLength * Math.cos(angle);
+            const y = triangleSideLength * Math.sin(angle);
+            trianglePoints.push({ x, y });
+          }
+          newShape = new fabric.Polygon(trianglePoints, {
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
         default:
           return;
       }
@@ -238,23 +255,28 @@ const PaintApp = () => {
       <button onClick={() => drawShape('circle')}>Draw Circle</button>
       <button onClick={() => drawShape('hexagon')}>Draw Hexagon</button>
       <button onClick={() => drawShape('pentagon')}>Draw Pentagon</button>
-      <button onClick={deleteSelectedObject}>🗑️ DELETE</button>
-
-      <input
-        type="color"
-        value={brushColor}
-        onChange={(e) => setBrushColor(e.target.value)}
-        title="Brush Color"
-      />
-      <input
-        type="range"
-        min="1"
-        max="20"
-        value={brushWidth}
-        onChange={(e) => setBrushWidth(parseInt(e.target.value, 10))}
-        title="Brush Width"
-      />
-
+      <button onClick={() => drawShape('triangle')}>Draw Triangle</button>
+      <button onClick={deleteSelectedObject}>Delete Selected Object</button>
+      <div>
+        <label>
+          Brush Color:
+          <input
+            type="color"
+            value={brushColor}
+            onChange={(e) => setBrushColor(e.target.value)}
+          />
+        </label>
+        <label>
+          Brush Width:
+          <input
+            type="range"
+            min="1"
+            max="50"
+            value={brushWidth}
+            onChange={(e) => setBrushWidth(parseInt(e.target.value, 10))}
+          />
+        </label>
+      </div>
       <canvas ref={canvasRef} />
     </div>
   );
