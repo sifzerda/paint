@@ -237,6 +237,25 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+
+          case 'octagon':
+            const octagonPoints = [];
+            const octagonSideLength = 50;
+            for (let i = 0; i < 8; i++) {
+              const angle = (Math.PI / 4) * i;
+              const x = octagonSideLength * Math.cos(angle);
+              const y = octagonSideLength * Math.sin(angle);
+              octagonPoints.push({ x, y });
+            }
+            newShape = new fabric.Polygon(octagonPoints, {
+              left: 100,
+              top: 100,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+            });
+            break;
+
         case 'heart':
           // Create a new fabric.Path using the provided heart path data
           newShape = new fabric.Path(`
@@ -385,6 +404,29 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+          case 'cross':
+            newShape = new fabric.Path(`
+              M 20% 0%
+              L 0% 20%
+              L 30% 50%
+              L 0% 80%
+              L 20% 100%
+              L 50% 70%
+              L 80% 100%
+              L 100% 80%
+              L 70% 50%
+              L 100% 20%
+              L 80% 0%
+              L 50% 30%
+              Z
+              `, {
+              left: 100,
+              top: 100,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+            });
+            break;
         case 'square':
           newShape = new fabric.Rect({
             left: 100,
@@ -457,7 +499,9 @@ const PaintApp = () => {
       <button onClick={() => drawShape('downArrow')}>Draw Down Arrow</button>
       <button onClick={() => drawShape('upArrow')}>Draw Up Arrow</button>
       <button onClick={() => drawShape('rightArrow')}>Draw Right Arrow</button>
+      <button onClick={() => drawShape('cross')}>Draw Cross</button>
       <button onClick={() => drawShape('square')}>Draw Square</button>
+      <button onClick={() => drawShape('octagon')}>Draw Octagon</button>
       <button onClick={() => drawShape('lightningBolt')}>Draw Lightning Bolt</button>
       <button onClick={deleteSelectedObject}>Delete Selected Object</button>
       <div>
