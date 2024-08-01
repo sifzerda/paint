@@ -497,24 +497,27 @@ const PaintApp = () => {
       <button onClick={() => setBrushType('airbrush')}>Airbrush</button>
       <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
       <button onClick={() => setBrushType('circle')}>Circle Brush</button>
+      </div>
 
-      <button onClick={() => drawShape('rectangle')}>Draw Rectangle</button>
-      <button onClick={() => drawShape('circle')}>Draw Circle</button>
-      <button onClick={() => drawShape('hexagon')}>Draw Hexagon</button>
-      <button onClick={() => drawShape('pentagon')}>Draw Pentagon</button>
-      <button onClick={() => drawShape('triangle')}>Draw Triangle</button>
-      <button onClick={() => drawShape('rightAngleTriangle')}>Draw Right Angle Triangle</button>
-      <button onClick={() => drawShape('heart')}>Draw Heart</button>
-      <button onClick={() => drawShape('star')}>Draw Star</button>
-      <button onClick={() => drawShape('speechBubble')}>Draw Speech Bubble</button>
-      <button onClick={() => drawShape('thoughtBubble')}>Draw Thought Bubble</button>
-      <button onClick={() => drawShape('leftArrow')}>Draw Left Arrow</button>
-      <button onClick={() => drawShape('downArrow')}>Draw Down Arrow</button>
-      <button onClick={() => drawShape('upArrow')}>Draw Up Arrow</button>
-      <button onClick={() => drawShape('rightArrow')}>Draw Right Arrow</button>
-      <button onClick={() => drawShape('cross')}>Draw Cross</button>
-      <button onClick={() => drawShape('square')}>Draw Square</button>
-      <button onClick={() => drawShape('lightningBolt')}>Draw Lightning Bolt</button>
+      <h2>Shapes</h2>
+      <div className='button-container'>
+      <button onClick={() => drawShape('rectangle')}>▯</button>
+      <button onClick={() => drawShape('circle')}>⚪️</button>
+      <button onClick={() => drawShape('hexagon')}>⬡</button>
+      <button onClick={() => drawShape('pentagon')}>⬠</button>
+      <button onClick={() => drawShape('triangle')}>ꕔ</button>
+      <button onClick={() => drawShape('rightAngleTriangle')}>◺</button>
+      <button onClick={() => drawShape('heart')}>❤️</button>
+      <button onClick={() => drawShape('star')}>⭐</button>
+      <button onClick={() => drawShape('speechBubble')}>🗨️</button>
+      <button onClick={() => drawShape('thoughtBubble')}>💭</button>
+      <button onClick={() => drawShape('leftArrow')}>⇦</button>
+      <button onClick={() => drawShape('downArrow')}>⇩</button>
+      <button onClick={() => drawShape('upArrow')}>⇧</button>
+      <button onClick={() => drawShape('rightArrow')}>⇨</button>
+      <button onClick={() => drawShape('cross')}>❌</button>
+      <button onClick={() => drawShape('square')}>⬜️</button>
+      <button onClick={() => drawShape('lightningBolt')}>⚡</button>
       </div>
 
       <div>
