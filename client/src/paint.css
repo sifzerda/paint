@@ -1,9 +1,23 @@
 /* src/Paint.css */
 
+.canvas-container {
+  border: 1px solid #000;
+  margin: 10px 0;
+  position: relative; /* Position relative to handle absolute positioning of canvas */
+  height:  1200px!important;
+  width:  2200px!important;
+}
+
+canvas {
+  border: 1px solid #000;
+  position: absolute; /* Position absolute to fill the container */
+  height:  1200px!important;
+  width:  2200px!important;
+}
+
 .paint {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   padding: 20px;
 }
   
