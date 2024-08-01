@@ -223,6 +223,20 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+        case 'rightAngleTriangle':
+          const rightAngleTrianglePoints = [
+            { x: 0, y: 0 },
+            { x: 100, y: 0 },
+            { x: 0, y: 100 },
+          ];
+          newShape = new fabric.Polygon(rightAngleTrianglePoints, {
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
         default:
           return;
       }
@@ -256,6 +270,7 @@ const PaintApp = () => {
       <button onClick={() => drawShape('hexagon')}>Draw Hexagon</button>
       <button onClick={() => drawShape('pentagon')}>Draw Pentagon</button>
       <button onClick={() => drawShape('triangle')}>Draw Triangle</button>
+      <button onClick={() => drawShape('rightAngleTriangle')}>Draw Right Angle Triangle</button>
       <button onClick={deleteSelectedObject}>Delete Selected Object</button>
       <div>
         <label>
