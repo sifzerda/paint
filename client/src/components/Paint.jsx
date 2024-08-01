@@ -253,51 +253,47 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
-          case 'star':
-            newShape = new fabric.Path(`
-              M 50 15
-              L 61 35
-              L 83 35
-              L 67 50
-              L 75 72
-              L 50 60
-              L 25 72
-              L 33 50
-              L 17 35
-              L 39 35
+        case 'star':
+          newShape = new fabric.Path(`
+              M 50% 0%
+              L 61% 35%
+              L 98% 35%
+              L 68% 57%
+              L 79% 91%
+              L 50% 70%
+              L 21% 91%
+              L 32% 57%
+              L 2% 35%
+              L 39% 35%
               Z
             `, {
-              left: 100,
-              top: 100,
-              fill: 'transparent',
-              stroke: brushColor,
-              strokeWidth: brushWidth,
-            });
-            break;
-          case 'speechBubble':
-            newShape = new fabric.Path(`
-              M 20 10
-              Q 20 0 40 0
-              Q 60 0 60 20
-              Q 60 30 50 30
-              Q 50 40 40 40
-              Q 30 40 30 30
-              Q 20 30 20 20
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
+        case 'speechBubble':
+          newShape = new fabric.Path(`
+              M 0% 0%
+              L 100% 0%
+              L 100% 75%
+              L 75% 75%
+              L 75% 100%
+              L 50% 75%
+              L 0% 75%
               Z
-              M 30 40
-              L 30 50
-              L 50 50
-              L 50 40
             `, {
-              left: 100,
-              top: 100,
-              fill: 'transparent',
-              stroke: brushColor,
-              strokeWidth: brushWidth,
-            });
-            break;
-          case 'thoughtBubble':
-            newShape = new fabric.Path(`
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
+        case 'thoughtBubble':
+          newShape = new fabric.Path(`
               M 30 10
               Q 20 0 10 0
               Q 0 0 0 10
@@ -310,106 +306,98 @@ const PaintApp = () => {
               L 30 30
               L 30 20
             `, {
-              left: 100,
-              top: 100,
-              fill: 'transparent',
-              stroke: brushColor,
-              strokeWidth: brushWidth,
-            });
-            break;
-          case 'leftArrow':
-            newShape = new fabric.Path(`
-              M 10 20
-              L 30 20
-              L 20 10
-              L 20 25
-              L 0 25
-              L 0 15
-              L 20 15
-              L 20 0
-              L 30 0
-              L 10 20
-              Z
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
+        case 'leftArrow':
+          newShape = new fabric.Path(`
+            M 40% 0%
+            L 40% 20%
+            L 100% 20%
+            L 100% 80%
+            L 40% 80%
+            L 40% 100%
+            L 0% 50%
+            Z
             `, {
-              left: 100,
-              top: 100,
-              fill: 'transparent',
-              stroke: brushColor,
-              strokeWidth: brushWidth,
-            });
-            break;
-          case 'downArrow':
-            newShape = new fabric.Path(`
-              M 20 0
-              L 20 30
-              L 10 30
-              L 10 20
-              L 0 20
-              L 20 40
-              L 40 20
-              L 30 20
-              L 20 30
-              Z
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
+        case 'downArrow':
+          newShape = new fabric.Path(`
+          M 52% 97%,
+          L 17% 60%,
+          L 34% 60%,
+          L 34% 0%,
+          L 71% 0%,
+          L 70% 60%,
+          L 85% 60%
+          Z
             `, {
-              left: 100,
-              top: 100,
-              fill: 'transparent',
-              stroke: brushColor,
-              strokeWidth: brushWidth,
-            });
-            break;
-          case 'upArrow':
-            newShape = new fabric.Path(`
-              M 20 30
-              L 20 0
-              L 10 0
-              L 10 10
-              L 0 10
-              L 20 -10
-              L 40 10
-              L 30 10
-              L 20 0
-              Z
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
+        case 'upArrow':
+          newShape = new fabric.Path(`
+          M 52% 3%, 
+          L 17% 40%, 
+          L 34% 40%, 
+          L 34% 100%, 
+          L 71% 100%, 
+          L 70% 40%, 
+          L 85% 40%
+            Z
             `, {
-              left: 100,
-              top: 100,
-              fill: 'transparent',
-              stroke: brushColor,
-              strokeWidth: brushWidth,
-            });
-            break;
-          case 'rightArrow':
-            newShape = new fabric.Path(`
-              M 30 20
-              L 0 20
-              L 10 30
-              L 10 15
-              L 30 15
-              L 30 0
-              L 40 0
-              L 20 20
-              Z
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
+        case 'rightArrow':
+          newShape = new fabric.Path(`
+            M 0% 20%
+            L 60% 20%
+            L 60% 0%
+            L 100% 50%
+            L 60% 100%
+            L 60% 80%
+            L 0% 80%
+            Z
             `, {
-              left: 100,
-              top: 100,
-              fill: 'transparent',
-              stroke: brushColor,
-              strokeWidth: brushWidth,
-            });
-            break;
-          case 'square':
-            newShape = new fabric.Rect({
-              left: 100,
-              top: 100,
-              fill: 'transparent',
-              stroke: brushColor,
-              strokeWidth: brushWidth,
-              width: 100,
-              height: 100,
-            });
-            break;
-          case 'lightningBolt':
-            newShape = new fabric.Path(`
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
+        case 'square':
+          newShape = new fabric.Rect({
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+            width: 100,
+            height: 100,
+          });
+          break;
+        case 'lightningBolt':
+          newShape = new fabric.Path(`
               M 20 0
               L 40 30
               L 30 30
@@ -420,19 +408,19 @@ const PaintApp = () => {
               L 50 50
               Z
             `, {
-              left: 100,
-              top: 100,
-              fill: 'transparent',
-              stroke: brushColor,
-              strokeWidth: brushWidth,
-            });
-            break;
-          default:
-            return;
-        }
-        canvas.add(newShape);
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
+        default:
+          return;
       }
-    };
+      canvas.add(newShape);
+    }
+  };
 
   const deleteSelectedObject = () => {
     const activeObject = fabricCanvas.current.getActiveObject();
