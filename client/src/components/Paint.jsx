@@ -242,7 +242,11 @@ const PaintApp = () => {
         case 'heart':
           // Create a new fabric.Path using the provided heart path data
           newShape = new fabric.Path(`
-            M10,30 A20,20,0,0,1,50,30 A20,20,0,0,1,90,30 Q90,60,50,90 Q10,60,10,30
+            M10,30 
+            A20,20,0,0,1,50,30 
+            A20,20,0,0,1,90,30 
+            Q90,60,50,90 
+            Q10,60,10,30
           `, {
             left: 100,
             top: 100,
