@@ -476,7 +476,6 @@ const PaintApp = () => {
     <div className='paint'>
     <div className='paint-toolbar'>
 
-
       <h2>Draw Toggle</h2>
       <div className='button-container'>
         <button onClick={handleDrawingToggle}>
