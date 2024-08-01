@@ -10,6 +10,7 @@ const PaintApp = () => {
   const [brushWidth, setBrushWidth] = useState(5);
   const [brushType, setBrushType] = useState('pencil');
   const [recentColors, setRecentColors] = useState([]);
+  const [pendingColor, setPendingColor] = useState('#000000'); // New state for pending color
   const lineRef = useRef(null);
 
   useEffect(() => {
@@ -501,9 +502,13 @@ const PaintApp = () => {
   };
 
   const handleBrushColorChange = (color) => {
-    setBrushColor(color);
+    setPendingColor(color); // Update pending color
+  };
+
+  const handleAddColorClick = () => {
+    setBrushColor(pendingColor); // Confirm color change
     setRecentColors((prevColors) => {
-      const newColors = [color, ...prevColors.filter(c => c !== color)];
+      const newColors = [pendingColor, ...prevColors.filter(c => c !== pendingColor)];
       return newColors.slice(0, 10);
     });
   };
@@ -569,11 +574,14 @@ const PaintApp = () => {
 
           <div>
             <label>Brush Color:</label>
+
             <input
-              type="color"
-              value={brushColor}
-              onChange={(e) => handleBrushColorChange(e.target.value)}
-            />
+            type='color'
+            value={pendingColor}
+            onChange={(e) => handleBrushColorChange(e.target.value)}
+          />
+          <button onClick={handleAddColorClick}>OK</button>
+
           </div>
 
           <div>
@@ -581,7 +589,12 @@ const PaintApp = () => {
             {recentColors.map((color, index) => (
               <button
                 key={index}
-                style={{ backgroundColor: color, width: 40, height: 40, border: 'none', margin: 2 }}
+                style={{ 
+                  backgroundColor: color, 
+                  width: 40, 
+                  height: 40, 
+                  border: 'none', 
+                  margin: 2 }}
                 onClick={() => handleRecentColorClick(color)}
               />
             ))}
