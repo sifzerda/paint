@@ -580,7 +580,7 @@ const PaintApp = () => {
             value={pendingColor}
             onChange={(e) => handleBrushColorChange(e.target.value)}
           />
-          <button onClick={handleAddColorClick}>OK</button>
+          <button onClick={handleAddColorClick}>Use</button>
 
 
 
@@ -613,7 +613,7 @@ const PaintApp = () => {
           </h3>
           </div>
 
-          
+
         </div>
       </div>
       </div>
