@@ -172,6 +172,23 @@ const PaintApp = () => {
             radius: 50,
           });
           break;
+        case 'hexagon':
+          const hexagonPoints = [];
+          const sideLength = 50;
+          for (let i = 0; i < 6; i++) {
+            const angle = (Math.PI / 3) * i;
+            const x = sideLength * Math.cos(angle);
+            const y = sideLength * Math.sin(angle);
+            hexagonPoints.push({ x, y });
+          }
+          newShape = new fabric.Polygon(hexagonPoints, {
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
         default:
           return;
       }
@@ -202,6 +219,7 @@ const PaintApp = () => {
       <button onClick={handleSave}>💾 SAVE</button>
       <button onClick={() => drawShape('rectangle')}>Draw Rectangle</button>
       <button onClick={() => drawShape('circle')}>Draw Circle</button>
+      <button onClick={() => drawShape('hexagon')}>Draw Hexagon</button>
       <button onClick={deleteSelectedObject}>🗑️ DELETE</button>
 
       <input
