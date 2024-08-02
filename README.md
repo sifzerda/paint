@@ -80,22 +80,33 @@ The main functions of code:
 
 (A) Canvas: 
 
-(A.1) PoolTable component:
+- <strong>'  useEffect(() => { fabricCanvas.current = new fabric.Canvas' <strong>: create drawing canvas and size;
+- <strong> 'useEffect...canvas.setZoom' <strong>: magnification of canvas/screen to zoom on all drawn objects;
 
-- <strong>'  useEffect(() => { fabricCanvas.current' <strong>: create drawing canvas and size
+
+(B) Object Transformation:
+
+- <strong>'const handleKeyDown...delete', </strong>: event listener; deletes selected object on delete key down
+- <strong>'const Resize', </strong>: event listener for resizing selected objects;
+- <strong>'const rotateSelectedObject', </strong>: rotation of selected object by 90o;
+- <strong>'const flipVertical' and 'flipHorizontal', </strong>: rotation of selected object along x and y axis.
+ - <strong>'const deleteSelectedObject', </strong>: fx for trash icon delete button, same operation as selecting and pressing 'delete' key.
+ - <strong>'const handleZoomChange', </strong>: fx for managing zoom.
+
+(C) Drawing:
+
+- <strong>'...switch (brushType)', </strong>: creates different brush types;
 - <strong>'const brushColor' and 'const brushWidth' </strong>: create brush color and brush width variables
-- <strong>'const handleKeyDown...delete', </strong>: event listener; deletes selected object on delete key down
-- <strong>'const handleKeyDown...delete', </strong>: event listener; deletes selected object on delete key down
-
-(A.2) Pool component:
-
-- <strong>'const ...' </strong>: ....
-- <strong>'useEffect...' </strong>: creates game world.
-- <strong>'const ...' 'const ...' </strong>: ...
-- <strong>'const ...' </strong>: ...
-- <strong>'const ...' </strong>: ...
+ - <strong>'const startLine', </strong>: drawing a straight line between two points/x and y coordinates on mouseUp and mouseDown.
+ - <strong>'const handleDrawingToggle', </strong>: fx for draw ON/OFF button, turns drawing mode on/off.
+ - <strong>'const drawShape', </strong>: creates various shapes and stores properties.
+ - <strong>'const handleBrushColorChange' 'const handleAddColorClick' and 'handleRecentColorClick', </strong>: adding selected colors to recent color palette. Had to be broken up into two stages; (1) cursor movement over the color spectrum creates a 'temporary color' (which is not added to the recent color palette). Once a color is chosen, you click the 'Use' button which adds the final color to the recent color palette.
  
-(B) Movement:
+(D) Options:
+
+ - <strong>'const handleSave', </strong>: fx for save button, saves image as a jpg by default.
+ -  - <strong>'const toggleBold' and 'const toggleItalic', </strong>: onClick buttons to toggle bold and italic for text.
+- <strong>'const addTextBox', </strong>: creates a text box.
 
 ## (7) Config
 
@@ -123,17 +134,34 @@ and
           });
           break;
 ```
-
 then add corresponding button 
 ```bash
  <button onClick={() => drawShape('new shape')}>new shape</button>
 ```
+
+(B) Save file format:
+
+The saved picture format is 'jpg' by default, but can be changed to other formats, e.g. .gif, .png, .bmp .tif by changing 'myDrawing.jpg' in the function
+
+```bash
+  const handleSave = () => {
+    const canvas = fabricCanvas.current;
+    if (canvas) {
+      const dataURL = canvas.toDataURL('image/jpg');
+      const link = document.createElement('a');
+      link.href = dataURL;
+      link.download = 'drawing.jpg';
+      link.click();
+    }
+  };
+```
+
 ## (8) Bugs and Further Development: 
 
-- Colour not applying to pencil or spray gun
-- In order to add colours to the recent colours palette, you must select it in the color picker window and click 'Use'. The Use button was necessary to finalize the selected color, otherwise every color cursor drags over is added to the recent palette, making it useless.
-- Some brushes and pencil don't respond to brush width -- needs to be fixed.
-- Eraser has its own size adjuster
+- ~~Colour not applying to pencil or spray gun~~ fixed
+- Note: In order to add colours to the recent colours palette, you must select it in the color picker window and click 'Use'. The Use button was necessary to finalize the selected color, otherwise every color cursor drags over is added to the recent palette, making it useless.
+- ~~Some brushes and pencil don't respond to brush width~~ fixed
+- ~~Eraser has its own size adjuster~~ fixed
   
 ## (9) To do: 
 

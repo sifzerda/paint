@@ -45,25 +45,26 @@ const PaintApp = () => {
     };
   }, []);
 
+  // BRUSH TYPES SWITCH ----------------------------------------------------//
+
   useEffect(() => {
     if (fabricCanvas.current) {
-      fabricCanvas.current.freeDrawingBrush.color = brushColor;
-      fabricCanvas.current.freeDrawingBrush.width = brushWidth;
-
-// BRUSH TYPES SWITCH ----------------------------------------------------//
-
       switch (brushType) {
         case 'pencil':
           fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
+          fabricCanvas.current.freeDrawingBrush.color = brushColor;
+          fabricCanvas.current.freeDrawingBrush.width = brushWidth;
           break;
         case 'airbrush':
           fabricCanvas.current.freeDrawingBrush = new fabric.SprayBrush(fabricCanvas.current);
           fabricCanvas.current.freeDrawingBrush.decimate = 0.1;
+          fabricCanvas.current.freeDrawingBrush.color = brushColor;
+          fabricCanvas.current.freeDrawingBrush.width = brushWidth;
           break;
           case 'eraser':
           fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
-          fabricCanvas.current.freeDrawingBrush.color = fabricCanvas.current.backgroundColor || '#FFFFFF'; // Use background color as eraser color
-          fabricCanvas.current.freeDrawingBrush.width = eraserSize;
+          fabricCanvas.current.freeDrawingBrush.color = fabricCanvas.current.backgroundColor || '#FFFFFF'; // white eraser
+          fabricCanvas.current.freeDrawingBrush.width = brushWidth;
           break;
         case 'pattern':
           const img = new Image();
@@ -84,7 +85,7 @@ const PaintApp = () => {
           fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
       }
     }
-  }, [brushColor, brushWidth, brushType, eraserSize]);
+  }, [brushColor, brushWidth, brushType]);
 
 // RESIZE SELECTED OBJECTS ----------------------------------------------------------//
 
@@ -173,10 +174,10 @@ const PaintApp = () => {
   const handleSave = () => {
     const canvas = fabricCanvas.current;
     if (canvas) {
-      const dataURL = canvas.toDataURL('image/png');
+      const dataURL = canvas.toDataURL('image/jpg');
       const link = document.createElement('a');
       link.href = dataURL;
-      link.download = 'drawing.png';
+      link.download = 'myDrawing.jpg'; // this can be changed to another file type.
       link.click();
     }
   };
@@ -656,14 +657,6 @@ const PaintApp = () => {
             {isLineDrawing ? 'Stop Line' : 'Start Line'}
           </button>
           <button onClick={() => setBrushType('eraser')}>🧽</button> {/* New eraser button */}
-        <span>Eraser Size:</span>
-        <input
-          type="number"
-          value={eraserSize}
-          min="1"
-          max="100"
-          onChange={(e) => setEraserSize(Number(e.target.value))}
-          disabled={brushType !== 'eraser'} />
         </div>
         <div className='button-container'>
         <h2>Actions</h2>
