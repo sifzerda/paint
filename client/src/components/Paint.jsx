@@ -630,14 +630,15 @@ const PaintApp = () => {
         <h2>Text</h2>
         <div className='button-container'>
         <button onClick={addTextBox}> &#91;A&#93; </button>
-        <FontSelect selectedFont={selectedFont} setSelectedFont={setSelectedFont} /> {/* Include FontSelector */}
-        
+
         <button onClick={toggleBold} style={{ fontWeight: isBold ? 'bold' : 'normal' }}>
           <strong>B</strong>
         </button>
         <button onClick={toggleItalic} style={{ fontStyle: isItalic ? 'italic' : 'normal' }}>
           <i>I</i>
         </button>
+
+        <FontSelect selectedFont={selectedFont} setSelectedFont={setSelectedFont} /> {/* Include FontSelector */}
         
         </div>
 
@@ -685,7 +686,7 @@ const PaintApp = () => {
         </div>
 
         <div>
-          <h2>Config</h2>
+          <h2>Colours</h2>
 
           <div className='button-container'>
             <h3>Brush Color:</h3>

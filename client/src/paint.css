@@ -96,46 +96,4 @@ input[type="range"] {
   font-size: 19px;
   color: black;
 }
-
-/* ========================= media queries ======================== */
-
-
-/* For tablets and small screens */
-@media (max-width: 768px) {
-  .canvas-container {
-    max-height: 60vh;
-    max-width: 90vw;
-  }
-
-  .paint h2 {
-    font-size: 16px;
-  }
-
-  .button-container button {
-    font-size: 12px;
-  }
-
-  .button-container h3 {
-    font-size: 14px;
-  }
-}
-
-/* For mobile screens */
-@media (max-width: 480px) {
-  .canvas-container {
-    max-height: 50vh;
-    max-width: 90vw;
-  }
-
-  .paint h2 {
-    font-size: 14px;
-  }
-
-  .button-container button {
-    font-size: 10px;
-  }
-
-  .button-container h3 {
-    font-size: 12px;
-  }
-}
+ 
