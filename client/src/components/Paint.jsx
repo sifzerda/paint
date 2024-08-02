@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { fabric } from 'fabric';
-import FontSelect from './FontSelect';  // Import the FontSelect component
+import FontSelect from './FontSelect';  // ImportsFontSelect 
 
 const PaintApp = () => {
   const canvasRef = useRef(null);
@@ -11,12 +11,12 @@ const PaintApp = () => {
   const [brushWidth, setBrushWidth] = useState(5);
   const [brushType, setBrushType] = useState('pencil');
   const [recentColors, setRecentColors] = useState([]);
-  const [tempColor, setTempColor] = useState('#000000'); // New state for pending color
-  const [eraserSize, setEraserSize] = useState(20); // New state for eraser size
-  const [zoom, setZoom] = useState(1); // State to manage zoom level
-  const [selectedFont, setSelectedFont] = useState('Arial'); // New state for selected font
-  const [isBold, setIsBold] = useState(false); // New state for bold style
-  const [isItalic, setIsItalic] = useState(false); // New state for italic style
+  const [tempColor, setTempColor] = useState('#000000'); //  state for pending color
+  const [eraserSize, setEraserSize] = useState(20); //  state for eraser size
+  const [zoom, setZoom] = useState(1); //  manage zoom level
+  const [selectedFont, setSelectedFont] = useState('Arial'); //  state for selected font
+  const [isBold, setIsBold] = useState(false); //  state for bold style
+  const [isItalic, setIsItalic] = useState(false); //  state for italic style
 
   const lineRef = useRef(null);
 

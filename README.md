@@ -78,8 +78,6 @@ import { fabric } from 'fabric'; // v5
 
 packages and tech:
 
- 
- 
 - konva (optimization)
 ![Konva](https://img.shields.io/badge/Konva-0D83CD.svg?style=for-the-badge&logo=Konva&logoColor=white)
 ![Lodash](https://img.shields.io/badge/Lodash-3492FF.svg?style=for-the-badge&logo=Lodash&logoColor=white)
