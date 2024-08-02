@@ -2,15 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 /* ------------------------- minesweeper -------------------------*/
 
-h1 {
-  font-family: 'VT323', monospace;
-  font-size: 2.5rem;
-  color: var(--volt);
-  text-align: center;
-  margin-bottom: 20px;
-  background-color: black;
-}
-
 .start {
   position: relative;
   border: 5px solid var(--midnight);
@@ -21,14 +12,6 @@ h1 {
   animation: neon-flashing 1s infinite alternate;
   border: 5px solid var(--midnight);
 }
-
-@keyframes neon-flashing {
-  from {
-    text-shadow: 0 0 10px  white, 0 0 20px var(--volt), 0 0 30px var(--volt), 0 0 40px var(--volt), 0 0 70px #00fff6, 0 0 80px #00fff6;
-  }
-  to {
-    text-shadow: none;
-  }}
 
 .grid-wrapper {
     display: flex;
