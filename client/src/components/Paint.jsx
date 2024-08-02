@@ -14,6 +14,8 @@ const PaintApp = () => {
   const [tempColor, setTempColor] = useState('#000000'); // New state for pending color
   const [zoom, setZoom] = useState(1); // State to manage zoom level
   const [selectedFont, setSelectedFont] = useState('Arial'); // New state for selected font
+  const [isBold, setIsBold] = useState(false); // New state for bold style
+  const [isItalic, setIsItalic] = useState(false); // New state for italic style
 
   const lineRef = useRef(null);
 
@@ -493,6 +495,14 @@ const PaintApp = () => {
     }
   };
 
+  const toggleBold = () => {
+    setIsBold((prevIsBold) => !prevIsBold);
+  };
+
+  const toggleItalic = () => {
+    setIsItalic((prevIsItalic) => !prevIsItalic);
+  };
+
   const addTextBox = () => {
     const canvas = fabricCanvas.current;
     if (canvas) {
@@ -502,6 +512,8 @@ const PaintApp = () => {
         width: 200,
         fontSize: 20,
         fontFamily: selectedFont, // Apply selected font
+        fontWeight: isBold ? 'bold' : 'normal',
+        fontStyle: isItalic ? 'italic' : 'normal',
         fill: brushColor,
         editable: true,
         borderColor: 'gray',
@@ -599,6 +611,14 @@ const PaintApp = () => {
         <div className='button-container'>
         <button onClick={addTextBox}> &#91;A&#93; </button>
         <FontSelect selectedFont={selectedFont} setSelectedFont={setSelectedFont} /> {/* Include FontSelector */}
+        
+        <button onClick={toggleBold} style={{ fontWeight: isBold ? 'bold' : 'normal' }}>
+          <strong>B</strong>
+        </button>
+        <button onClick={toggleItalic} style={{ fontStyle: isItalic ? 'italic' : 'normal' }}>
+          <i>I</i>
+        </button>
+        
         </div>
 
         <h2>Brushes</h2>
