@@ -12,6 +12,7 @@ const PaintApp = () => {
   const [recentColors, setRecentColors] = useState([]);
   const [tempColor, setTempColor] = useState('#000000'); // New state for pending color
   const [zoom, setZoom] = useState(1); // State to manage zoom level
+  const [selectedFont, setSelectedFont] = useState('Arial'); // New state for selected font
 
   const lineRef = useRef(null);
 
@@ -499,18 +500,20 @@ const PaintApp = () => {
         top: 100,
         width: 200,
         fontSize: 20,
-        fill: brushColor, // Set the initial text color
+        fontFamily: selectedFont, // Apply selected font
+        fill: brushColor,
         editable: true,
-        borderColor: 'gray', // Border color for when the textbox is active
-        cornerColor: 'blue', // Corner color for when the textbox is active
-        cornerSize: 8, // Size of the corners for resizing
-        transparentCorners: false, // Whether the corners should be transparent
+        borderColor: 'gray',
+        cornerColor: 'blue',
+        cornerSize: 8,
+        transparentCorners: false,
       });
       canvas.add(textbox);
-      canvas.setActiveObject(textbox); // Make the textbox active for immediate editing
+      canvas.setActiveObject(textbox);
       canvas.renderAll();
     }
   };
+
 
   const rotateSelectedObject = () => {
     const canvas = fabricCanvas.current;
@@ -594,6 +597,17 @@ const PaintApp = () => {
         <h2>Text</h2>
         <div className='button-container'>
         <button onClick={addTextBox}> &#91;A&#93; </button>
+        <select
+            value={selectedFont}
+            onChange={(e) => setSelectedFont(e.target.value)}>
+            <option value="Arial">Arial</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value='Roboto'>Roboto</option>
+            <option value='Tahoma'>Tahoma</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Verdana">Verdana</option>
+          </select>
         </div>
 
         <h2>Brushes</h2>
