@@ -5,7 +5,7 @@
   margin: 10px 0;
   position: relative;
   max-height: 80vh; /* Use viewport height for responsiveness */
-  max-width: 90vw; /* Use viewport width for responsiveness */
+  max-width: 97vw; /* Use viewport width for responsiveness */
 }
 
 canvas {
@@ -18,13 +18,13 @@ canvas {
 canvas.upper-canvas {
   position: absolute;
   max-height: 80vh; /* Use viewport height for responsiveness */
-  max-width: 90vw; /* Use viewport width for responsiveness */
+  max-width: 97vw; /* Use viewport width for responsiveness */
 }
 
 canvas.lower-canvas {
   position: absolute;
   max-height: 80vh; /* Use viewport height for responsiveness */
-  max-width: 90vw; /* Use viewport width for responsiveness */
+  max-width: 97vw; /* Use viewport width for responsiveness */
 }
 
 .paint {
