@@ -55,7 +55,7 @@ const PaintApp = () => {
           break;
         case 'pattern':
           const img = new Image();
-          img.src = 'https://fabricjs.com/assets/honey_im_subtle.png';
+          img.src = '../../public/images/crayon.jpg';
           img.onload = () => {
             const patternBrush = new fabric.PatternBrush(fabricCanvas.current);
             patternBrush.source = img;
