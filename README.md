@@ -47,9 +47,12 @@ Things learned:
 
 ## (3) Visuals
 
-[Visit App deployed to Heroku](https://eightball-10-c60b2e58af61.herokuapp.com/)   
+[Visit App deployed to Heroku](https://paint-sandy.vercel.app/)   
 
 ![paintpic](https://github.com/user-attachments/assets/edd3d6ad-957c-4e44-9d78-bf33766a6120)
+
+![paintpic2](https://github.com/user-attachments/assets/1753daec-2619-4aa1-9dc2-eb22f3740f2f)
+
 
 ## (4) Installation
 
