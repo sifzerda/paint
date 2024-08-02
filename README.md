@@ -130,16 +130,11 @@ then add corresponding button
 ```
 ## (8) Bugs and Further Development: 
 
+- Colour not applying to pencil or spray gun
 - In order to add colours to the recent colours palette, you must select it in the color picker window and click 'Use'. The Use button was necessary to finalize the selected color, otherwise every color cursor drags over is added to the recent palette, making it useless.
 - Some brushes and pencil don't respond to brush width -- needs to be fixed.
 - Eraser has its own size adjuster
-
-Optimization:
-- use react-virtualized to only render visible stuff
-- once game basically running, convert it into Redux or Zustand
-- use a bundler like Webpack or Parcel to optimize build output: Enable code splitting, tree-shaking, and minification to reduce bundle size and improve load times.
-- Consider memoizing components using React.memo to prevent unnecessary re-renders, especially if their props rarely change.
-
+  
 ## (9) To do: 
 
 - [x] Make Canvas
