@@ -52,12 +52,7 @@ Things learned:
 
 [Visit App deployed to Heroku](https://eightball-10-c60b2e58af61.herokuapp.com/)   
 
-![poolPic1](https://github.com/user-attachments/assets/7a029b18-93a7-47f3-937f-798dae3b747d)
-
-![poolpic1](https://github.com/user-attachments/assets/12ba417e-f00a-4b37-adb3-a6612b539c31)
-
-![poolpic2](https://github.com/user-attachments/assets/1dfa1768-368e-4653-a78d-271ed1ac8466)
-
+![paintpic](https://github.com/user-attachments/assets/edd3d6ad-957c-4e44-9d78-bf33766a6120)
 
 ## (4) Installation
 
@@ -77,14 +72,14 @@ Technologies:
 import * as fabric from 'fabric'; // v6
 import { fabric } from 'fabric'; // v5
 ```
-- ~~<strong>Paper.js: </strong>~~ Alternative to Fabric, canvas and image manipulation Library API. Able to make a paint style app, but lacks features of Fabric out of box.
+- ~~<strong>Paper.js: </strong>~~ Alternative to Fabric, canvas and image manipulation Library API. Able to make a paint style app, but lacks features of Fabric out of box. Scrapped in favor of fabric.
 - Konva:
 - Lodash:
 
 packages and tech:
 
-- fabric.js -- apparently better suited for ms paint
-- ~~paper.js~~
+ 
+ 
 - konva (optimization)
 ![Konva](https://img.shields.io/badge/Konva-0D83CD.svg?style=for-the-badge&logo=Konva&logoColor=white)
 ![Lodash](https://img.shields.io/badge/Lodash-3492FF.svg?style=for-the-badge&logo=Lodash&logoColor=white)
@@ -115,29 +110,40 @@ The main functions of code:
 
 ## (7) Config
 
-(A) Pocket Sensors:
+(A) SVG draw images:
 
-You can remove:
+Custom SVG drawings can be put into the drawShape fx if you have the svg path. You can copy the 'heart' case and paste the path in:
 ```bash
 const sensorRadius = 10;
 ```
 and 
 ```bash
-        isSensor: true,
-        isStatic: true,
+       case 'new shape':
+          newShape = new fabric.Path(`
+            M10,30 
+            A20,20,0,0,1,50,30 
+            A20,20,0,0,1,90,30 
+            Q90,60,50,90 
+            Q10,60,10,30
+          `, {
+            left: 100,
+            top: 100,
+            fill: 'transparent',
+            stroke: brushColor,
+            strokeWidth: brushWidth,
+          });
+          break;
 ```
 
-(B) Change Background:
-
+then add corresponding button 
 ```bash
-          isSensor: true,
+ <button onClick={() => drawShape('new shape')}>new shape</button>
 ```
-
 ## (8) Bugs and Further Development: 
 
-- xxx
-- xxx
-- xxx
+- In order to add colours to the recent colours palette, you must select it in the color picker window and click 'Use'. The Use button was necessary to finalize the selected color, otherwise every color cursor drags over is added to the recent palette, making it useless.
+- Some brushes and pencil don't respond to brush width -- needs to be fixed.
+- Eraser has its own size adjuster
 
 Optimization:
 - use react-virtualized to only render visible stuff
@@ -149,34 +155,27 @@ Optimization:
 
 - [x] Make Canvas
 - [x] Make pencil that draws by toggling and dragging
-- [ ] 
-- [ ]
-- [ ]
-- [ ]
+- [x] color selection
+- [x] recently added colors palette
+- [x] transform and selection options
+  - [x] Flip vertically
+  - [x] Flip horizontally
+  - [x] Rotate by 90 degrees
+    - custom rotation is built into Fabric
+- [x] create shapes
+- [x] magnify
+- [x] eraser
 - [ ] 
 - [ ] make different brush types:
   - [x] Airbrush
   - [ ] Caligraphy brush
-  - [ ] Pen
-  - [ ] Pencil
-  - [ ] Crayon
-  - [ ] 
+  - [ ] Pen/marker
+  - [x] Pencil
+  - [x] Crayon (using pattern brush with texture)
 - [x] save: provide choice of file extension (currently working inside /copies/saveasfileformat.jsx)
 - [x] Can delete selecting and pressing delete key
 - [x] Create a trash can icon that also deletes whatever is selected
 - [ ] create undo and redo buttons that undo or redo most recent action
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
 
 ## (10) Support
 
@@ -205,5 +204,5 @@ Distributed under the MIT License. See LICENSE.txt for more information.
 
 ## (14) Project status
 
-This project is incomplete.
+This project is (mostly) complete.
 
