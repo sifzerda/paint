@@ -25,6 +25,7 @@ An 'MS Paint' style app using Fabric.js. This was built with React, Node, Javasc
 Things learned:
 - Using Fabric.js, + some experimentation with alternatives: a Paint style app in vanilla JS and in Paper.js (both saved in /copies)
 - App which saves content to local machine (saves images)
+- using 'clip-path' to draw custom-shaped svgs. Also used to 'reveal' or conceal parts of existing images.
 
 ## (2) Badges
 

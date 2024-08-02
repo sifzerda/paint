@@ -10,7 +10,9 @@ const PaintApp = () => {
   const [brushWidth, setBrushWidth] = useState(5);
   const [brushType, setBrushType] = useState('pencil');
   const [recentColors, setRecentColors] = useState([]);
-  const [pendingColor, setPendingColor] = useState('#000000'); // New state for pending color
+  const [tempColor, setTempColor] = useState('#000000'); // New state for pending color
+  const [zoom, setZoom] = useState(1); // State to manage zoom level
+
   const lineRef = useRef(null);
 
   useEffect(() => {
@@ -125,6 +127,13 @@ const PaintApp = () => {
     };
   }, [isLineDrawing, brushColor, brushWidth]);
 
+  useEffect(() => {
+    const canvas = fabricCanvas.current;
+    if (canvas) {
+      canvas.setZoom(zoom); // Apply the zoom level to the canvas
+    }
+  }, [zoom]);
+
   const handleDrawingToggle = () => {
     setIsDrawing((prevIsDrawing) => {
       const newDrawingState = !prevIsDrawing;
@@ -208,6 +217,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+
         case 'triangle':
           const trianglePoints = [];
           const triangleSideLength = 100;
@@ -225,6 +235,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+          
         case 'rightAngleTriangle':
           const rightAngleTrianglePoints = [
             { x: 0, y: 0 },
@@ -239,7 +250,6 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
-
         case 'octagon':
           const octagonPoints = [];
           const octagonSideLength = 50;
@@ -440,6 +450,21 @@ const PaintApp = () => {
             height: 100,
           });
           break;
+
+          case 'ellipse':
+            newShape = new fabric.Ellipse({
+              left: 250,
+              top: 100,
+              rx: 40,
+              ry: 20,
+              fill: 'transparent',
+              stroke: brushColor,
+              strokeWidth: brushWidth,
+              width: 100,
+              height: 100,
+            });
+            break;
+
         case 'lightningBolt':
           newShape = new fabric.Path(`
               M 20 0
@@ -463,6 +488,27 @@ const PaintApp = () => {
           return;
       }
       canvas.add(newShape);
+    }
+  };
+
+  const addTextBox = () => {
+    const canvas = fabricCanvas.current;
+    if (canvas) {
+      const textbox = new fabric.Textbox('Enter text here', {
+        left: 100,
+        top: 100,
+        width: 200,
+        fontSize: 20,
+        fill: brushColor, // Set the initial text color
+        editable: true,
+        borderColor: 'gray', // Border color for when the textbox is active
+        cornerColor: 'blue', // Corner color for when the textbox is active
+        cornerSize: 8, // Size of the corners for resizing
+        transparentCorners: false, // Whether the corners should be transparent
+      });
+      canvas.add(textbox);
+      canvas.setActiveObject(textbox); // Make the textbox active for immediate editing
+      canvas.renderAll();
     }
   };
 
@@ -502,19 +548,24 @@ const PaintApp = () => {
   };
 
   const handleBrushColorChange = (color) => {
-    setPendingColor(color); // Update pending color
+    setTempColor(color); // Update pending color
   };
 
   const handleAddColorClick = () => {
-    setBrushColor(pendingColor); // Confirm color change
+    setBrushColor(tempColor); // Confirm color change
     setRecentColors((prevColors) => {
-      const newColors = [pendingColor, ...prevColors.filter(c => c !== pendingColor)];
+      const newColors = [tempColor, ...prevColors.filter(c => c !== tempColor)];
       return newColors.slice(0, 10);
     });
   };
 
   const handleRecentColorClick = (color) => {
     setBrushColor(color);
+  };
+
+  const handleZoomChange = (event) => {
+    const zoomLevel = parseFloat(event.target.value);
+    setZoom(zoomLevel);
   };
 
   return (
@@ -540,12 +591,30 @@ const PaintApp = () => {
           <button onClick={flipHorizontal}>↔️</button>
         </div>
 
+        <h2>Text</h2>
+        <div className='button-container'>
+        <button onClick={addTextBox}> &#91;A&#93; </button>
+        </div>
+
         <h2>Brushes</h2>
         <div className='button-container'>
           <button onClick={() => setBrushType('pencil')}>✏️</button>
           <button onClick={() => setBrushType('airbrush')}>🔫</button>
           <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
           <button onClick={() => setBrushType('circle')}>◎</button>
+        </div>
+
+        <h2>Zoom</h2>
+        <div className='button-container'>
+        <span role="img" aria-label="Magnifying Glass">🔎</span>
+          <input
+            type="range"
+            min="0.1"
+            max="3"
+            step="0.1"
+            value={zoom}
+            onChange={handleZoomChange}
+          />
         </div>
 
         <h2>Shapes</h2>
@@ -566,7 +635,8 @@ const PaintApp = () => {
           <button onClick={() => drawShape('rightArrow')}>⇨</button>
           <button onClick={() => drawShape('cross')}>❌</button>
           <button onClick={() => drawShape('square')}>⬜️</button>
-          <button onClick={() => drawShape('lightningBolt')}>⚡</button>
+          <button onClick={() => drawShape('ellipse')}>⬯</button>
+          <button onClick={() => drawShape('lightningBolt')}>⚡</button>        
         </div>
 
         <div>
@@ -577,7 +647,7 @@ const PaintApp = () => {
 
             <input
             type='color'
-            value={pendingColor}
+            value={tempColor}
             onChange={(e) => handleBrushColorChange(e.target.value)}
           />
           <button onClick={handleAddColorClick}>Use</button>
