@@ -1,6 +1,7 @@
+// font selection inside same component
+
 import { useRef, useEffect, useState } from 'react';
 import { fabric } from 'fabric';
-import FontSelect from './FontSelect';  // Import the FontSelect component
 
 const PaintApp = () => {
   const canvasRef = useRef(null);
@@ -598,7 +599,17 @@ const PaintApp = () => {
         <h2>Text</h2>
         <div className='button-container'>
         <button onClick={addTextBox}> &#91;A&#93; </button>
-        <FontSelect selectedFont={selectedFont} setSelectedFont={setSelectedFont} /> {/* Include FontSelector */}
+        <select
+            value={selectedFont}
+            onChange={(e) => setSelectedFont(e.target.value)}>
+            <option value="Arial">Arial</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value='Roboto'>Roboto</option>
+            <option value='Tahoma'>Tahoma</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Verdana">Verdana</option>
+          </select>
         </div>
 
         <h2>Brushes</h2>

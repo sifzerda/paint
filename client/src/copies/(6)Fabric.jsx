@@ -1,3 +1,5 @@
+// font selection inside different component
+
 import { useRef, useEffect, useState } from 'react';
 import { fabric } from 'fabric';
 import FontSelect from './FontSelect';  // Import the FontSelect component
