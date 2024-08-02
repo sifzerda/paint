@@ -29,6 +29,8 @@ const PaintApp = () => {
     fabricCanvas.current.freeDrawingBrush.color = brushColor;
     fabricCanvas.current.freeDrawingBrush.width = brushWidth;
 
+// DELETE SELECTED OBJECTS ----------------------------------------------------//
+
     const handleKeyDown = (event) => {
       if (event.key === 'Delete' || event.key === 'Backspace') {
         deleteSelectedObject();
@@ -47,6 +49,8 @@ const PaintApp = () => {
     if (fabricCanvas.current) {
       fabricCanvas.current.freeDrawingBrush.color = brushColor;
       fabricCanvas.current.freeDrawingBrush.width = brushWidth;
+
+// BRUSH TYPES SWITCH ----------------------------------------------------//
 
       switch (brushType) {
         case 'pencil':
@@ -82,6 +86,8 @@ const PaintApp = () => {
     }
   }, [brushColor, brushWidth, brushType, eraserSize]);
 
+// RESIZE SELECTED OBJECTS ----------------------------------------------------------//
+
   useEffect(() => {
     const handleResize = () => {
       fabricCanvas.current.setWidth(window.innerWidth);
@@ -94,6 +100,8 @@ const PaintApp = () => {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+// DRAW STRAIGHT LINE ----------------------------------------------------------------//
 
   useEffect(() => {
     const canvas = fabricCanvas.current;
@@ -137,12 +145,16 @@ const PaintApp = () => {
     };
   }, [isLineDrawing, brushColor, brushWidth]);
 
+// ZOOM CANVAS ------------------------------------------------------------------------//
+
   useEffect(() => {
     const canvas = fabricCanvas.current;
     if (canvas) {
       canvas.setZoom(zoom); // Apply the zoom level to the canvas
     }
   }, [zoom]);
+
+  // DRAW ON/OFF TOGGLE ------------------------------------------------------------------------//
 
   const handleDrawingToggle = () => {
     setIsDrawing((prevIsDrawing) => {
@@ -156,6 +168,8 @@ const PaintApp = () => {
     setIsLineDrawing((prevIsLineDrawing) => !prevIsLineDrawing);
   };
 
+  // SAVE IMAGE ------------------------------------------------------------------------//
+
   const handleSave = () => {
     const canvas = fabricCanvas.current;
     if (canvas) {
@@ -167,11 +181,14 @@ const PaintApp = () => {
     }
   };
 
+  // SHAPES SWITCH ------------------------------------------------------------------------//
+
   const drawShape = (shape) => {
     const canvas = fabricCanvas.current;
     if (canvas) {
       let newShape;
       switch (shape) {
+// rectangle -------------------------------------//
         case 'rectangle':
           newShape = new fabric.Rect({
             left: 100,
@@ -183,6 +200,7 @@ const PaintApp = () => {
             height: 100,
           });
           break;
+// circle ---------------------------------------//          
         case 'circle':
           newShape = new fabric.Circle({
             left: 100,
@@ -193,6 +211,7 @@ const PaintApp = () => {
             radius: 50,
           });
           break;
+// hexagon -------------------------------------//
         case 'hexagon':
           const hexagonPoints = [];
           const hexagonSideLength = 50;
@@ -210,6 +229,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+// pentagon -------------------------------------//
         case 'pentagon':
           const pentagonPoints = [];
           const pentagonSideLength = 50;
@@ -227,7 +247,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
-
+// equilateral triangle -------------------------------------//
         case 'triangle':
           const trianglePoints = [];
           const triangleSideLength = 100;
@@ -245,7 +265,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
-          
+// right angled triangle -------------------------------------//
         case 'rightAngleTriangle':
           const rightAngleTrianglePoints = [
             { x: 0, y: 0 },
@@ -260,6 +280,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+// octagon -------------------------------------//
         case 'octagon':
           const octagonPoints = [];
           const octagonSideLength = 50;
@@ -277,7 +298,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
-
+// heart -------------------------------------//
         case 'heart':
           // Create a new fabric.Path using the provided heart path data
           newShape = new fabric.Path(`
@@ -294,6 +315,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+// star -------------------------------------//
         case 'star':
           newShape = new fabric.Path(`
               M 50% 0%
@@ -315,6 +337,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+// speech bubble -------------------------------------//
         case 'speechBubble':
           newShape = new fabric.Path(`
               M 0% 0%
@@ -333,6 +356,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+// thought bubble -------------------------------------//
         case 'thoughtBubble':
           newShape = new fabric.Path(`
           M803 1546 
@@ -357,6 +381,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+// left arrow -------------------------------------//
         case 'leftArrow':
           newShape = new fabric.Path(`
             M 40% 0%
@@ -375,6 +400,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+// down arrow -------------------------------------//
         case 'downArrow':
           newShape = new fabric.Path(`
           M 52% 97%,
@@ -393,6 +419,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+// up arrow -------------------------------------//
         case 'upArrow':
           newShape = new fabric.Path(`
           M 52% 3%, 
@@ -411,6 +438,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+// right arrow -------------------------------------//
         case 'rightArrow':
           newShape = new fabric.Path(`
             M 0% 20%
@@ -429,6 +457,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+// cross -------------------------------------//
         case 'cross':
           newShape = new fabric.Path(`
               M 20% 0%
@@ -452,6 +481,7 @@ const PaintApp = () => {
             strokeWidth: brushWidth,
           });
           break;
+// square -------------------------------------//
         case 'square':
           newShape = new fabric.Rect({
             left: 100,
@@ -463,7 +493,7 @@ const PaintApp = () => {
             height: 100,
           });
           break;
-
+// ellipse -------------------------------------//
           case 'ellipse':
             newShape = new fabric.Ellipse({
               left: 250,
@@ -477,7 +507,7 @@ const PaintApp = () => {
               height: 100,
             });
             break;
-
+// lightning bolt -------------------------------------//
         case 'lightningBolt':
           newShape = new fabric.Path(`
             M275.4,441.8
@@ -503,6 +533,8 @@ const PaintApp = () => {
     }
   };
 
+  // BOLD AND ITALIC TOGGLE ------------------------------------------------------------------------//
+
   const toggleBold = () => {
     setIsBold((prevIsBold) => !prevIsBold);
   };
@@ -510,6 +542,9 @@ const PaintApp = () => {
   const toggleItalic = () => {
     setIsItalic((prevIsItalic) => !prevIsItalic);
   };
+
+
+// TEXT BOX ------------------------------------------------------------------------//
 
   const addTextBox = () => {
     const canvas = fabricCanvas.current;
@@ -535,6 +570,7 @@ const PaintApp = () => {
     }
   };
 
+// 360o OBJECT ROTATION ------------------------------------------------------------------------//
 
   const rotateSelectedObject = () => {
     const canvas = fabricCanvas.current;
@@ -545,6 +581,8 @@ const PaintApp = () => {
     }
   };
 
+// VERTICAL FLIP ------------------------------------------------------------------------//
+
   const flipVertical = () => {
     const canvas = fabricCanvas.current;
     const activeObject = canvas.getActiveObject();
@@ -553,6 +591,8 @@ const PaintApp = () => {
       canvas.renderAll();
     }
   };
+
+// HORIZONTAL FLIP ------------------------------------------------------------------------//
 
   const flipHorizontal = () => {
     const canvas = fabricCanvas.current;
@@ -563,6 +603,8 @@ const PaintApp = () => {
     }
   };
 
+// DELETE SELECTED (USING TRASH BUTTON) -----------------------------------------------------------------//
+
   const deleteSelectedObject = () => {
     const activeObject = fabricCanvas.current.getActiveObject();
     if (activeObject) {
@@ -571,9 +613,13 @@ const PaintApp = () => {
     }
   };
 
+// INSIDE COLOR PICKER (PRE-RECENT COLOR SETTING) -----------------------------------------------------------//
+
   const handleBrushColorChange = (color) => {
     setTempColor(color); // Update pending color
   };
+
+// ADDING PICKED COLOR TO RECENT COLOR PALETTE  -------------------------------------------------------------//
 
   const handleAddColorClick = () => {
     setBrushColor(tempColor); // Confirm color change
@@ -587,16 +633,20 @@ const PaintApp = () => {
     setBrushColor(color);
   };
 
+// ZOOMING ------------------------------------------------------------------------//
+
   const handleZoomChange = (event) => {
     const zoomLevel = parseFloat(event.target.value);
     setZoom(zoomLevel);
   };
 
+// ================================================================================//
+//                                RETURN                                           //
+// ================================================================================//
+
   return (
     <div className='paint'>
       <div className='paint-toolbar'>
-
-
         <div className='button-container'>
         <h2>Draw Toggle</h2>
           <button onClick={handleDrawingToggle}>
@@ -605,7 +655,6 @@ const PaintApp = () => {
           <button onClick={handleLineDrawingToggle}>
             {isLineDrawing ? 'Stop Line' : 'Start Line'}
           </button>
-
           <button onClick={() => setBrushType('eraser')}>🧽</button> {/* New eraser button */}
         <span>Eraser Size:</span>
         <input
@@ -614,11 +663,8 @@ const PaintApp = () => {
           min="1"
           max="100"
           onChange={(e) => setEraserSize(Number(e.target.value))}
-          disabled={brushType !== 'eraser'} // Disable input if not in eraser mode
-        />
-
+          disabled={brushType !== 'eraser'} />
         </div>
-
         <div className='button-container'>
         <h2>Actions</h2>
           <button onClick={handleSave}>💾</button>
@@ -627,22 +673,17 @@ const PaintApp = () => {
           <button onClick={flipVertical}>↕️</button>
           <button onClick={flipHorizontal}>↔️</button>
         </div>
-
         <div className='button-container'>
         <h2>Text</h2>
         <button onClick={addTextBox}> &#91;A&#93; </button>
-
         <button onClick={toggleBold} style={{ fontWeight: isBold ? 'bold' : 'normal' }}>
           <strong>B</strong>
         </button>
         <button onClick={toggleItalic} style={{ fontStyle: isItalic ? 'italic' : 'normal' }}>
           <i>I</i>
         </button>
-
         <FontSelect selectedFont={selectedFont} setSelectedFont={setSelectedFont} /> {/* Include FontSelector */}
-        
         </div>
-
         <div className='button-container'>
         <h2>Brushes</h2>
           <button onClick={() => setBrushType('pencil')}>✏️</button>
@@ -650,7 +691,6 @@ const PaintApp = () => {
           <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
           <button onClick={() => setBrushType('circle')}>◎</button>
         </div>
-
         <div className='button-container'>
         <h2>Zoom</h2>
         <span role="img" aria-label="Magnifying Glass">🔎</span>
@@ -660,10 +700,8 @@ const PaintApp = () => {
             max="3"
             step="0.1"
             value={zoom}
-            onChange={handleZoomChange}
-          />
+            onChange={handleZoomChange}/>
         </div>
-
         <div className='button-container'>
         <h2>Shapes</h2>
           <button onClick={() => drawShape('rectangle')}>▯</button>
@@ -685,22 +723,15 @@ const PaintApp = () => {
           <button onClick={() => drawShape('ellipse')}>⬯</button>
           <button onClick={() => drawShape('lightningBolt')}>⚡</button>        
         </div>
-
         <div>
           <h2>Colours</h2>
-
           <div className='button-container'>
             <h3>Brush Color:</h3>
-
             <input
             type='color'
             value={tempColor}
-            onChange={(e) => handleBrushColorChange(e.target.value)}
-          />
+            onChange={(e) => handleBrushColorChange(e.target.value)}/>
           <button onClick={handleAddColorClick}>Use</button>
-
-
-
           <div className='button-container'>
             <h3>Recent Colors:</h3>
             {recentColors.map((color, index) => (
@@ -712,11 +743,9 @@ const PaintApp = () => {
                   height: 40, 
                   border: 'none', 
                   margin: 2 }}
-                onClick={() => handleRecentColorClick(color)}
-              />
+                onClick={() => handleRecentColorClick(color)}/>
             ))}
           </div>
-
           <div className='button-container'>
           <h3>
             Brush Width:
@@ -725,17 +754,12 @@ const PaintApp = () => {
               min="1"
               max="50"
               value={brushWidth}
-              onChange={(e) => setBrushWidth(parseInt(e.target.value, 10))}
-            />
+              onChange={(e) => setBrushWidth(parseInt(e.target.value, 10))}/>
           </h3>
           </div>
-
-
         </div>
       </div>
       </div>
-
-
       <canvas ref={canvasRef} />
     </div>
   );

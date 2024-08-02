@@ -37,14 +37,11 @@ Things learned:
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) 
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![Canvas API](https://img.shields.io/badge/Canvas-E72429.svg?style=for-the-badge&logo=Canvas&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-![Apollo-GraphQL](https://img.shields.io/badge/-ApolloGraphQL-311C87?style=for-the-badge&logo=apollo-graphql)
 ![FontAwesome](https://img.shields.io/badge/Font%20Awesome-538DD7.svg?style=for-the-badge&logo=Font-Awesome&logoColor=white) 
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
@@ -73,28 +70,19 @@ import * as fabric from 'fabric'; // v6
 import { fabric } from 'fabric'; // v5
 ```
 - ~~<strong>Paper.js: </strong>~~ Alternative to Fabric, canvas and image manipulation Library API. Able to make a paint style app, but lacks features of Fabric out of box. Scrapped in favor of fabric.
-- Konva:
-- Lodash:
-
-packages and tech:
-
-- konva (optimization)
-![Konva](https://img.shields.io/badge/Konva-0D83CD.svg?style=for-the-badge&logo=Konva&logoColor=white)
-![Lodash](https://img.shields.io/badge/Lodash-3492FF.svg?style=for-the-badge&logo=Lodash&logoColor=white)
-- lodash (optimization)
-
 
 ## (6) Dev Stuff: Building:
 
 The main functions of code:
 
-(A) Game: 
+(A) Canvas: 
 
 (A.1) PoolTable component:
 
-- <strong>'const ...' </strong>: ...
-- <strong>'const ....' </strong>: ...
-- <strong>'const ...', </strong>: ...
+- <strong>'  useEffect(() => { fabricCanvas.current' <strong>: create drawing canvas and size
+- <strong>'const brushColor' and 'const brushWidth' </strong>: create brush color and brush width variables
+- <strong>'const handleKeyDown...delete', </strong>: event listener; deletes selected object on delete key down
+- <strong>'const handleKeyDown...delete', </strong>: event listener; deletes selected object on delete key down
 
 (A.2) Pool component:
 
