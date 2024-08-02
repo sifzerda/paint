@@ -4,7 +4,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Vazmatin&display-swap");
 @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Outfit:wght@100..900&family=Rowdies:wght@300;400;700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Space+Grotesk:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Righteous');
-@import url('https://fonts.googleapis.com/css?family=Poppins:900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Denk+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Permanent+Marker&family=Rubik+Mono+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
@@ -185,7 +184,7 @@ h2.login-title {
   text-align: center;
   margin-bottom: 20px;
   margin-top: 20px;
-  color: var(--volt);
+  color: var(--lblue);
 }
 
 div.container.my-1-9 {
@@ -260,17 +259,13 @@ a {
 
 /* svg icons on contact page*/
 a:hover {
-  color: var(--volt)!important;
+  color: var(--lblue)!important;
 }
 
 /* ------ -------------------- ----------- */
 
 div.bucket-app {
   border-top: var(--dark-blue) ridge 8px;
-}
-
-aside.sidebar {
-  border-right: var(--dark-blue) ridge 8px;
 }
 
 .nav-tabs-subjects {
@@ -298,20 +293,13 @@ aside.sidebar {
 
 .nav-link.active {
   background-color: black !important;
-  color: var(--volt) !important;
-  border: 2px solid var(--volt) !important;
+  color: var(--creepy-green) !important;
+  border: 2px solid var(--lblue) !important;
   font-style: italic;
 }
 
 li.nav-item {
   min-width: 130px;
-}
- 
-.sidebar {
-  width: 250px;
-  background-color: black;
-  color: white;
-  padding-top: 20px;
 }
 
 h1 {
@@ -320,27 +308,20 @@ h1 {
   justify-content: center;
   display: grid;
   font-family: "Rajdhani", cursive;
-  color:  var(--volt);
+  color:  var(--lblue);
   text-shadow: 5px 8px 5px rgba(0, 0, 0, 0.5);
 }
 
 span.bomb {
-  color: var(--light-red);
+  color: var(--creepy-green);
 border: 3px solid white;
   padding: 10px;
   font-size: 25px;
 }
 
 span.flag {
-  color: var(--light-red);
+  color: var(--lblue);
   font-size: 20px;
-}
-
-.separator-line {
-  width: 100%;
-  height: 1px;
-  background-color: #fff; 
-  margin: 20px 0; 
 }
 
 /* projects ---------------------------------------------------------*/
@@ -359,7 +340,6 @@ a {
   color: white;
   font-family: 'Source Code Pro';
 }
-
 
 h4 {
   color: var(--light-red);
@@ -386,12 +366,6 @@ h5 {
   background-color: black!important;
 }
 
-p.code-left {
-  margin-left: 20px;
-  margin-right: 20px;
-  text-indent: 20px;
-}
-
 .bg-light {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important;
@@ -402,12 +376,6 @@ p.code-left {
   align-items: center;
   font-size: 24px;
   cursor: pointer;
-}
-
-.delete-icon,
-.edit-icon {
-  margin-right: 5px;
-  color: #fff;
 }
 
 /* ================== Contact Form ======================== */
@@ -442,22 +410,6 @@ label {
 
 ol.nav.nav-tabs {
   list-style: decimal-leading-zero;
-}
-
-/* ================  ========================== */
- 
-.read-the-docs {
-  color: #888;
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 /* ========================= media queries ======================== */
@@ -554,9 +506,6 @@ ol.nav.nav-tabs {
 
 /* Large screens (desktops and laptops) */
 @media screen and (min-width: 1024px) {
-
-  /* Add your styles for large screens here */
-  /* For example: */
 
   div.icon-container {
     justify-content: center;

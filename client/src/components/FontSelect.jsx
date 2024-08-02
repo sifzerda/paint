@@ -48,6 +48,7 @@ const FontSelect = ({ selectedFont, setSelectedFont }) => {
         <option value='Marlett'>Marlett</option>
         <option value='Microsoft Sans Serif'>Microsoft Sans Serif</option>
         <option value='Modern No. 20'>Modern No. 20</option>
+        <option value='Monospace'>Monospace</option>
         <option value='Monotype Corsiva'>Monotype Corsiva</option>
         <option value='MS Gothic'>MS Gothic</option>
         <option value='MS UI Gothic'>MS UI Gothic</option>
