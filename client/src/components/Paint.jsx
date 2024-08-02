@@ -606,6 +606,7 @@ const PaintApp = () => {
           </button>
 
           <button onClick={() => setBrushType('eraser')}>🧽</button> {/* New eraser button */}
+        <span>Eraser Size:</span>
         <input
           type="number"
           value={eraserSize}
