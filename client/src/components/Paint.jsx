@@ -471,15 +471,14 @@ const PaintApp = () => {
 
         case 'lightningBolt':
           newShape = new fabric.Path(`
-              M 20 0
-              L 40 30
-              L 30 30
-              L 20 50
-              L 40 50
-              L 20 100
-              L 30 50
-              L 50 50
-              Z
+            M275.4,441.8
+            l157.2,0
+            L5.7,948.9
+            l149-435.5
+            H0
+            L425.5,0
+            L275.4,441.8
+            z
             `, {
             left: 100,
             top: 100,
