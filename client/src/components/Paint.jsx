@@ -596,8 +596,9 @@ const PaintApp = () => {
     <div className='paint'>
       <div className='paint-toolbar'>
 
-        <h2>Draw Toggle</h2>
+
         <div className='button-container'>
+        <h2>Draw Toggle</h2>
           <button onClick={handleDrawingToggle}>
             {isDrawing ? 'Stop Draw' : 'Start Draw'}
           </button>
@@ -618,8 +619,8 @@ const PaintApp = () => {
 
         </div>
 
-        <h2>Actions</h2>
         <div className='button-container'>
+        <h2>Actions</h2>
           <button onClick={handleSave}>💾</button>
           <button onClick={deleteSelectedObject}>🗑️</button>
           <button onClick={rotateSelectedObject}>↻</button>
@@ -627,8 +628,8 @@ const PaintApp = () => {
           <button onClick={flipHorizontal}>↔️</button>
         </div>
 
-        <h2>Text</h2>
         <div className='button-container'>
+        <h2>Text</h2>
         <button onClick={addTextBox}> &#91;A&#93; </button>
 
         <button onClick={toggleBold} style={{ fontWeight: isBold ? 'bold' : 'normal' }}>
@@ -642,16 +643,16 @@ const PaintApp = () => {
         
         </div>
 
-        <h2>Brushes</h2>
         <div className='button-container'>
+        <h2>Brushes</h2>
           <button onClick={() => setBrushType('pencil')}>✏️</button>
           <button onClick={() => setBrushType('airbrush')}>🔫</button>
           <button onClick={() => setBrushType('pattern')}>Pattern Brush</button>
           <button onClick={() => setBrushType('circle')}>◎</button>
         </div>
 
-        <h2>Zoom</h2>
         <div className='button-container'>
+        <h2>Zoom</h2>
         <span role="img" aria-label="Magnifying Glass">🔎</span>
           <input
             type="range"
@@ -663,8 +664,8 @@ const PaintApp = () => {
           />
         </div>
 
-        <h2>Shapes</h2>
         <div className='button-container'>
+        <h2>Shapes</h2>
           <button onClick={() => drawShape('rectangle')}>▯</button>
           <button onClick={() => drawShape('circle')}>⚪️</button>
           <button onClick={() => drawShape('hexagon')}>⬡</button>
