@@ -12,6 +12,7 @@ const PaintApp = () => {
   const [brushType, setBrushType] = useState('pencil');
   const [recentColors, setRecentColors] = useState([]);
   const [tempColor, setTempColor] = useState('#000000'); // New state for pending color
+  const [eraserSize, setEraserSize] = useState(20); // New state for eraser size
   const [zoom, setZoom] = useState(1); // State to manage zoom level
   const [selectedFont, setSelectedFont] = useState('Arial'); // New state for selected font
   const [isBold, setIsBold] = useState(false); // New state for bold style
@@ -55,6 +56,11 @@ const PaintApp = () => {
           fabricCanvas.current.freeDrawingBrush = new fabric.SprayBrush(fabricCanvas.current);
           fabricCanvas.current.freeDrawingBrush.decimate = 0.1;
           break;
+          case 'eraser':
+          fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
+          fabricCanvas.current.freeDrawingBrush.color = fabricCanvas.current.backgroundColor || '#FFFFFF'; // Use background color as eraser color
+          fabricCanvas.current.freeDrawingBrush.width = eraserSize;
+          break;
         case 'pattern':
           const img = new Image();
           img.src = '../../public/images/crayon.jpg';
@@ -74,7 +80,7 @@ const PaintApp = () => {
           fabricCanvas.current.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas.current);
       }
     }
-  }, [brushColor, brushWidth, brushType]);
+  }, [brushColor, brushWidth, brushType, eraserSize]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -598,6 +604,17 @@ const PaintApp = () => {
           <button onClick={handleLineDrawingToggle}>
             {isLineDrawing ? 'Stop Line' : 'Start Line'}
           </button>
+
+          <button onClick={() => setBrushType('eraser')}>🧽</button> {/* New eraser button */}
+        <input
+          type="number"
+          value={eraserSize}
+          min="1"
+          max="100"
+          onChange={(e) => setEraserSize(Number(e.target.value))}
+          disabled={brushType !== 'eraser'} // Disable input if not in eraser mode
+        />
+
         </div>
 
         <h2>Actions</h2>

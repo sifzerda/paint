@@ -4,28 +4,38 @@
   border: 1px solid #000;
   margin: 10px 0;
   position: relative;
-  /* Position relative to handle absolute positioning of canvas */
-  max-height: 1200px !important;
-  max-width: 2200px !important;
+  max-height: 80vh; /* Use viewport height for responsiveness */
+  max-width: 90vw; /* Use viewport width for responsiveness */
 }
 
 canvas {
   border: 1px solid #000;
   position: absolute;
-  /* Position absolute to fill the container */
-  max-height: 1200px !important;
-  max-width: 2200px !important;
+  width: 100%;
+  height: 100%;
+}
+
+canvas.upper-canvas {
+  position: absolute;
+  max-height: 80vh; /* Use viewport height for responsiveness */
+  max-width: 90vw; /* Use viewport width for responsiveness */
+}
+
+canvas.lower-canvas {
+  position: absolute;
+  max-height: 80vh; /* Use viewport height for responsiveness */
+  max-width: 90vw; /* Use viewport width for responsiveness */
 }
 
 .paint {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
 }
 
 .paint h2 {
   margin-top: 0;
-  font-size: 22px;
+  font-size: 18px;
   color: rgb(95, 23, 10);
 }
 
@@ -58,13 +68,13 @@ input[type="range"] {
   padding: 10px;
   background-color: #f0f0f0;
   border-bottom: 2px solid #ccc;
-  justify-content: left;
+  justify-content: center;
   /* Center buttons within container */
   max-height: 150px;
 }
 
 .button-container button {
-  padding: 10px;
+  padding: 8px;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
@@ -85,4 +95,47 @@ input[type="range"] {
 .button-container h3 {
   font-size: 19px;
   color: black;
+}
+
+/* ========================= media queries ======================== */
+
+
+/* For tablets and small screens */
+@media (max-width: 768px) {
+  .canvas-container {
+    max-height: 60vh;
+    max-width: 90vw;
+  }
+
+  .paint h2 {
+    font-size: 16px;
+  }
+
+  .button-container button {
+    font-size: 12px;
+  }
+
+  .button-container h3 {
+    font-size: 14px;
+  }
+}
+
+/* For mobile screens */
+@media (max-width: 480px) {
+  .canvas-container {
+    max-height: 50vh;
+    max-width: 90vw;
+  }
+
+  .paint h2 {
+    font-size: 14px;
+  }
+
+  .button-container button {
+    font-size: 10px;
+  }
+
+  .button-container h3 {
+    font-size: 12px;
+  }
 }
