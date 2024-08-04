@@ -158,10 +158,10 @@ The saved picture format is 'jpg' by default, but can be changed to other format
 
 ## (8) Bugs and Further Development: 
 
-- ~~Colour not applying to pencil or spray gun~~ fixed
+- ~~Colour not applying to pencil or spray gun~~ FIXED
 - Note: In order to add colours to the recent colours palette, you must select it in the color picker window and click 'Use'. The Use button was necessary to finalize the selected color, otherwise every color cursor drags over is added to the recent palette, making it useless.
-- ~~Some brushes and pencil don't respond to brush width~~ fixed
-- ~~Eraser has its own size adjuster~~ fixed
+- ~~Some brushes and pencil don't respond to brush width~~ FIXED
+- ~~Eraser has its own size adjuster~~ FIXED
   
 ## (9) To do: 
 
