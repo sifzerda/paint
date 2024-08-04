@@ -43,11 +43,11 @@ Things learned:
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![Canvas API](https://img.shields.io/badge/Canvas-E72429.svg?style=for-the-badge&logo=Canvas&logoColor=white)
 ![FontAwesome](https://img.shields.io/badge/Font%20Awesome-538DD7.svg?style=for-the-badge&logo=Font-Awesome&logoColor=white) 
-![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
 ## (3) Visuals
 
-[Visit App deployed to Heroku](https://paint-sandy.vercel.app/)   
+[Visit App deployed to Vercel](https://paint-sandy.vercel.app/)   
 
 ![paintpic](https://github.com/user-attachments/assets/edd3d6ad-957c-4e44-9d78-bf33766a6120)
 
